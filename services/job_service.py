@@ -1,24 +1,51 @@
+import os
+from dotenv import load_dotenv
+from tavily import TavilyClient
+
+load_dotenv()
+
 class JobService:
 
-    def search_jobs(self, role: str) -> str:
+    def __init__(self):
+        self.client = TavilyClient(
+            api_key= os.getenv("TAVILY_API_KEY")
+        )
 
-        return f"""
-Backend Developer Requirements
+    def search_job_requirements(self, role: str, location: str = "India", experience: str = "Fresher") -> list[dict]:
+        """Search for recent job description."""
 
-Role:
-{role}
+        query = f"""
+        {role}
+        {location}
+        {experience}
 
-Required Skills
+        job description
+        required skills
+        responsibilities
+        preferred skills"""
 
-- Python
-- FastAPI
-- Docker
-- Kubernetes
-- PostgreSQL
-- Redis
-- AWS
-- CI/CD
-- REST APIs
-- Git
-- Linux
-"""
+        response = self.client.search(
+            query=query,
+            search_depth="advanced",
+            max_results=5
+        )
+
+        jobs = []
+
+        for result in response["results"]:
+
+            jobs.append(
+                {
+                    "title": result["title"],
+                    "url": result["url"],
+                    "content": result["content"]
+                }
+            )
+
+        return jobs
+
+
+job_service = JobService()   # not a class but an instance of the class abstraction
+
+
+
