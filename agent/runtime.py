@@ -1,0 +1,109 @@
+import os
+
+from dotenv import load_dotenv
+
+from langchain_groq import ChatGroq
+
+from langchain_core.messages import (
+    HumanMessage,
+    SystemMessage,
+    ToolMessage,
+)
+
+from prompts.system_prompts import SYSTEM_PROMPT
+
+
+load_dotenv()
+
+
+class AgentRuntime:
+
+    def __init__(self, tools):
+
+        self.llm = ChatGroq(
+            model="llama-3.3-70b-versatile",
+            api_key=os.getenv("GROQ_API_KEY")
+        )
+
+        self.tools = tools
+
+        self.tool_map = {
+            tool.name: tool
+            for tool in tools
+        }
+
+        self.llm_with_tools = self.llm.bind_tools(
+            self.tools
+        )
+
+        self.messages = [
+            SystemMessage(
+                content=SYSTEM_PROMPT
+            )
+        ]
+
+    def ask_llm(self):
+
+        return self.llm_with_tools.invoke(
+            self.messages
+        )
+
+    def execute_tools(self, response):
+        self.messages.append(response)
+        for tool_call in response.tool_calls:
+
+            tool_name = tool_call["name"]
+
+            arguments = tool_call["args"]
+
+            tool = self.tool_map[tool_name]
+
+            try:
+                result = tool.invoke(arguments)
+
+            except Exception as e :
+                result = f"Tool execution failed: {str(e)}"
+
+            tool_message = ToolMessage(
+                content=str(result),
+                tool_call_id=tool_call["id"]
+            )
+            
+            self.messages.append(tool_message)
+
+        final_response = self.ask_llm()
+
+        self.messages.append(final_response)
+
+        return final_response
+
+    def chat(self):
+
+        while True:
+
+            user_input = input("You: ")
+
+            if user_input.lower() == "exit":
+                break
+
+            self.messages.append(
+                HumanMessage(
+                    content=user_input
+                )
+            )
+
+            response = self.ask_llm()
+
+            if not response.tool_calls:
+
+                print(f"\nAI: {response.content}\n")
+
+                self.messages.append(response)
+
+                continue
+
+            final_response = self.execute_tools(
+                response
+            )
+
+            print(f"\nAI: {final_response.content}\n")
