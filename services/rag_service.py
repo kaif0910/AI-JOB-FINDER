@@ -2,6 +2,10 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class RAGService:
@@ -14,7 +18,7 @@ class RAGService:
         self.vector_store = None
         self.retriever = None
 
-    def load_resume(self, pdf_path: str):
+    def load_resume(self, pdf_path: str) -> None:
 
         # Load PDF
         loader = PyPDFLoader(pdf_path)
@@ -22,8 +26,8 @@ class RAGService:
 
         # Split into chunks
         splitter = RecursiveCharacterTextSplitter(
-            chunk_size=500,
-            chunk_overlap=100
+            chunk_size=800,
+            chunk_overlap=150
         )
 
         chunks = splitter.split_documents(documents)
@@ -40,8 +44,10 @@ class RAGService:
 
         # Create retriever
         self.retriever = self.vector_store.as_retriever(
+            search_type= "mmr",
             search_kwargs={
-                "k": 3
+                "k": 3,
+                "fetch_k": 15
             }
         )
 
@@ -58,3 +64,6 @@ class RAGService:
         )
 
         return context
+
+
+rag_service = RAGService()   #singleton instance

@@ -21,7 +21,7 @@ class AgentRuntime:
     def __init__(self, tools):
 
         self.llm = ChatGroq(
-            model="llama-3.3-70b-versatile",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             api_key=os.getenv("GROQ_API_KEY")
         )
 
@@ -35,6 +35,7 @@ class AgentRuntime:
         self.llm_with_tools = self.llm.bind_tools(
             self.tools
         )
+        
 
         self.messages = [
             SystemMessage(
@@ -57,13 +58,15 @@ class AgentRuntime:
             arguments = tool_call["args"]
 
             tool = self.tool_map[tool_name]
+            
+            
 
             try:
                 result = tool.invoke(arguments)
 
             except Exception as e :
                 result = f"Tool execution failed: {str(e)}"
-
+            
             tool_message = ToolMessage(
                 content=str(result),
                 tool_call_id=tool_call["id"]
@@ -93,6 +96,7 @@ class AgentRuntime:
             )
 
             response = self.ask_llm()
+            
 
             if not response.tool_calls:
 
@@ -105,5 +109,5 @@ class AgentRuntime:
             final_response = self.execute_tools(
                 response
             )
-
+            
             print(f"\nAI: {final_response.content}\n")
