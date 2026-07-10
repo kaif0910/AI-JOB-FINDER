@@ -15,11 +15,19 @@ class ReportService:
         elements = []
 
         for line in report_content.split("\n"):
-            if line.strip() == "":
+            line = line.strip()
+            if not line:
                 elements.append(
-                    Spacer(1,12)
+                    Spacer(1, 12)
+                ) 
+                continue
+            if line.isupper():
+                elements.append(
+                    Paragraph(
+                        f"<b><font size=18>{line}</font><b/>",
+                        styles["Heading1"]
+                    )
                 )
-
             else:
                 elements.append(
                     Paragraph(
