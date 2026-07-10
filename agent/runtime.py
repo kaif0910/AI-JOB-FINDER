@@ -77,7 +77,6 @@ class AgentRuntime:
 
         final_response = self.ask_llm()
 
-        self.messages.append(final_response)
 
         return final_response
 
@@ -103,6 +102,5 @@ class AgentRuntime:
 
                 response = self.execute_tools(response)
 
-            print(f"\nAI:{response.content}\n")
-            
             self.messages.append(response)
+            print(f"\nAI:{response.content}\n")
