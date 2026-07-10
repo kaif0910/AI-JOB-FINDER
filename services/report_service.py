@@ -24,7 +24,7 @@ class ReportService:
             if line.isupper():
                 elements.append(
                     Paragraph(
-                        f"<b><font size=18>{line}</font><b/>",
+                        f"<b><font size=18>{line}</font></b>",
                         styles["Heading1"]
                     )
                 )

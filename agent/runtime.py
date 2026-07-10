@@ -99,16 +99,10 @@ class AgentRuntime:
             response = self.ask_llm()
             
 
-            if not response.tool_calls:
+            while response.tool_calls:
 
-                print(f"\nAI: {response.content}\n")
+                response = self.execute_tools(response)
 
-                self.messages.append(response)
-
-                continue
-
-            final_response = self.execute_tools(
-                response
-            )
+            print(f"\nAI:{response.content}\n")
             
-            print(f"\nAI: {final_response.content}\n")
+            self.messages.append(response)
