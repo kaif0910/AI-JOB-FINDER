@@ -1,13 +1,36 @@
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer
+)
+
+from reportlab.lib.styles import getSampleStyleSheet
+
+
 class ReportService:
 
-    def save(self, report: str) -> str:
+    def generate_report(self, report_content: str, filename: str = "career_report.pdf") -> dict:
+        styles = getSampleStyleSheet()
+        document = SimpleDocTemplate(filename)
+        elements = []
 
-        with open(
-            "career_report.txt",
-            "w",
-            encoding="utf-8"
-        ) as file:
+        for line in report_content.split("\n"):
+            if line.strip() == "":
+                elements.append(
+                    Spacer(1,12)
+                )
 
-            file.write(report)
+            else:
+                elements.append(
+                    Paragraph(
+                        line,
+                        styles["BodyText"]
+                    )
+                )
+        document.build(elements)
+        return {
+            "status": "success",
+            "file_path": filename
+        }
 
-        return "Report saved successfully."
+report_service = ReportService()

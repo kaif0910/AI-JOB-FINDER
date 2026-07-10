@@ -51,6 +51,7 @@ class AgentRuntime:
 
     def execute_tools(self, response):
         self.messages.append(response)
+        print(response.tool_calls)
         for tool_call in response.tool_calls:
 
             tool_name = tool_call["name"]
