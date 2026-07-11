@@ -1,4 +1,4 @@
-from services.rag_service import rag_service
+"""from services.rag_service import rag_service
 from agent.runtime import AgentRuntime
 from tools.resume import search_resume
 from tools.jobs import search_job_requirements
@@ -19,3 +19,38 @@ runtime = AgentRuntime(
 )
 print(search_resume)
 runtime.chat()
+these are the manual runtime setup without using langgraph """
+
+
+
+from graph.workflow import workflow
+from services.rag_service import rag_service
+
+
+rag_service.load_resume("data/resume.pdf")
+
+def main():
+    while True:
+        question = input("You:")
+
+        if question.lower() == "exit":
+            break
+
+        state = {
+            "question": question,
+            "resume_context": "",
+            "job_requirements": [],
+            "analysis": "",
+            "report_path": ""
+        }
+        
+        result = workflow.invoke(state)
+        print("\nAI:")
+        print(result["analysis"])
+
+        if result["report_path"]:
+            print(f"\nReport Generated: {result['report_path']}")
+
+
+if __name__ == "__main__":
+    main()

@@ -5,7 +5,7 @@ class AgentState(TypedDict):
 
     resume_context: str
 
-    job_requirements: str
+    job_requirements: list
 
     analysis: str
 
