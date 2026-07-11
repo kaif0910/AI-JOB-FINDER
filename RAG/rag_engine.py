@@ -4,7 +4,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
 
-class RAGEngine:
+class RAGEngine:          # RAG runtime 
 
     def __init__(self):
         self.embedding_model = HuggingFaceEmbeddings(
