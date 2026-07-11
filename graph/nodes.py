@@ -7,6 +7,8 @@ load_dotenv()
 from services.rag_service import rag_service
 from services.job_service import job_service
 from services.report_service import report_service
+from prompts.analysis_prompt import ANALYSIS_PROMPT
+from prompts.report_prompt import REPORT_PROMPT
 
 from langchain_groq import ChatGroq
 
@@ -37,29 +39,10 @@ def jobs_node(state: AgentState):
 
 def analysis_node(state: AgentState):
 
-    prompt = f"""
-
-Resume
-
-{state["resume_context"]}
-
-Jobs
-
-{state["job_requirements"]}
-
-Compare them.
-
-Return
-
-1. Strengths
-
-2. Missing Skills
-
-3. Roadmap
-
-4. Recommended Projects
-
-"""
+    prompt = ANALYSIS_PROMPT.format(
+        resume = state["resume_context"],
+        jobs=state["job_requirements"]
+    )
 
     response = llm.invoke(prompt)
 
@@ -71,12 +54,9 @@ Return
 
 def report_node(state):
 
-    prompt = f"""
-Convert the following analysis into
-a professional career report.
-
-{state["analysis"]}
-"""
+    prompt = REPORT_PROMPT.format(
+        analysis= state["analysis"]
+    )
 
     report = llm.invoke(prompt)
 
