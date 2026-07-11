@@ -12,6 +12,12 @@ class CareerCopilot:
 
         state = create_initial_state(question)
 
-        return self.workflow.invoke(state)
+        result = self.workflow.invoke(state)
+
+        return {
+            "analysis": result["analysis"],
+            "report_path": result["report_path"]
+        }
+
 
 
