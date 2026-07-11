@@ -1,10 +1,29 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
-from api.routers import router
+from api.routers.career import router
+
+from services.rag_service import rag_service
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+
+    print("Loading Resume...")
+
+    rag_service.load_resume("data/resume.pdf")
+
+    print("Resume Loaded.")
+
+    yield
+
+    print("Application shutting down...")
+
 
 app = FastAPI(
-    title="Career Copilot API"
+    title="Career Copilot",
+    lifespan=lifespan
 )
 
-app.include_router(router)  #equivalent to app.use in express
-
+app.include_router(router)
