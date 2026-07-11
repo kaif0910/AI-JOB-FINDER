@@ -7,7 +7,7 @@ class CareerCopilot:
 
         self.workflow = workflow
 
-    def invoke(self, question: str):
+    def analyze(self, question: str):
 
         state = create_initial_state(question)
 

@@ -24,7 +24,7 @@ async def analyze(
 
 ):
 
-    result = agent.chat(
+    result = agent.analyze(
         request.question
     )
 
