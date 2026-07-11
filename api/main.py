@@ -6,6 +6,8 @@ from api.routers.career import router
 
 from services.rag_service import rag_service
 
+from exceptions import generic_exception_handler
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -26,4 +28,9 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+app.add_exception_handler(
+    Exception,
+    generic_exception_handler
+)
 app.include_router(router)
+
