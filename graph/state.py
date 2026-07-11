@@ -10,3 +10,16 @@ class AgentState(TypedDict):
     analysis: str
 
     report_path: str
+
+
+def create_initial_state(
+        question: str,
+) -> AgentState:
+
+    return {
+        "question": question,
+        "resume_context": "",
+        "job_requirements": [],
+        "analysis": "",
+        "report_path": ""
+    }

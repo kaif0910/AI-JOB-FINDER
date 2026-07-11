@@ -23,34 +23,22 @@ these are the manual runtime setup without using langgraph """
 
 
 
-from graph.workflow import workflow
-from services.rag_service import rag_service
+from agent import CareerCopilot
 
+agent = CareerCopilot()
 
-rag_service.load_resume("data/resume.pdf")
+while True:
+    question = input("You: ")
 
-def main():
-    while True:
-        question = input("You:")
+    if question.lower() == "exit":
+        break
 
-        if question.lower() == "exit":
-            break
+    result = agent.invoke(question)
 
-        state = {
-            "question": question,
-            "resume_context": "",
-            "job_requirements": [],
-            "analysis": "",
-            "report_path": ""
-        }
+    print("\nAI:\n")
+    print(["analysis"])
+
+    if result["report_path"]:
+        print(f"\nPDF: {result['report_path']}")
+
         
-        result = workflow.invoke(state)
-        print("\nAI:")
-        print(result["analysis"])
-
-        if result["report_path"]:
-            print(f"\nReport Generated: {result['report_path']}")
-
-
-if __name__ == "__main__":
-    main()
