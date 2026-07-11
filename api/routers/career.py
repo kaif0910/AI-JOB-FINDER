@@ -28,4 +28,7 @@ async def analyze(
         request.question
     )
 
-    return ChatResponse(**result)
+    return ChatResponse(
+        analysis= result["analysis"],
+        report_path= result["report_path"]
+    )
