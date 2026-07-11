@@ -62,7 +62,7 @@ def report_node(state):
 
     state["report_content"] = report.content
 
-    result = report_service.generate_pdf(
+    result = report_service.generate_report(
 
         report.content
 
