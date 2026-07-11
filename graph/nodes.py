@@ -43,21 +43,21 @@ Resume
 
 {state["resume_context"]}
 
--------------------
-
 Jobs
 
 {state["job_requirements"]}
 
 Compare them.
 
-Generate
+Return
 
-1. Missing Skills
+1. Strengths
 
-2. Learning Roadmap
+2. Missing Skills
 
-3. Recommended Projects
+3. Roadmap
+
+4. Recommended Projects
 
 """
 
@@ -69,12 +69,25 @@ Generate
 
 
 
-def report_node(state: AgentState):
+def report_node(state):
 
-    save_report = report_service.generate_report(
-        state["analysis"]
+    prompt = f"""
+Convert the following analysis into
+a professional career report.
+
+{state["analysis"]}
+"""
+
+    report = llm.invoke(prompt)
+
+    state["report_content"] = report.content
+
+    result = report_service.generate_pdf(
+
+        report.content
+
     )
 
-    state["report_path"] = save_report["file_path"]
+    state["report_path"] = result["file_path"]
 
     return state
