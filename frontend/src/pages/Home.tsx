@@ -4,6 +4,8 @@ import { analyzeResume } from "../api/career";
 
 import type { AnalysisResponse } from "../types/career";
 
+import Navbar from "../components/Navbar";
+
 import ChatBox from "../components/ChatBox";
 import ChatInput from "../components/ChatInput";
 
@@ -48,6 +50,8 @@ export default function Home() {
     return (
 
         <div className="min-h-screen bg-gray-100">
+
+            <Navbar />
 
             <ChatBox
                 response={response}

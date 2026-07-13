@@ -1,6 +1,6 @@
 import api from "./client";
 
-import {
+import type {
     AnalysisResponse
 } from "../types/career";
 
