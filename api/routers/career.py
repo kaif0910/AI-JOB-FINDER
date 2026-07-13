@@ -32,3 +32,26 @@ async def analyze(
         analysis= result["analysis"],
         report_path= result["report_path"]
     )
+
+
+@router.post(
+    "/jobs",
+    response_model=JobSearchResponse
+)
+async def search_jobs(
+    request : jobRequest,
+    agent : CareerCopilot = Depends(get_agent)
+):
+    jobs = agent.search_jobs(
+        role= request.role,
+        location=request.location,
+        experience=request.experience
+    )
+
+    return JobSearchResponse(
+        jobs=[
+            JobResponse(**job)
+            for job in jobs
+        ]
+    )
+    

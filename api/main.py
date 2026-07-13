@@ -6,7 +6,7 @@ from api.routers.career import router
 
 from services.rag_service import rag_service
 
-from exceptions import generic_exception_handler
+from api.exceptions import generic_exception_handler
 
 
 @asynccontextmanager
