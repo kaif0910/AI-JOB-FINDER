@@ -24,16 +24,19 @@ these are the manual runtime setup without using langgraph """
 
 
 from agent import CareerCopilot
+from services.rag_service import rag_service
 
 agent = CareerCopilot()
-
+print("resume loading")
+rag_service.load_resume("data/resume.pdf")
+print("resume loaded")
 while True:
     question = input("You: ")
 
     if question.lower() == "exit":
         break
 
-    result = agent.invoke(question)
+    result = rag_service.search(question)
 
     print("\nAI:\n")
     print(["analysis"])

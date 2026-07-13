@@ -8,7 +8,7 @@ class CareerCopilot:
 
         self.workflow = workflow
 
-    def analyze(self, question: str):
+    def analyze(self, question: str, collection_name = "resume"):
 
         state = create_initial_state(question)
 

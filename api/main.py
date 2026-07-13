@@ -2,11 +2,14 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from api.routers.career import router
+from api.routers.career import router as career_router
+from api.routers.reports import router as report_router
 
 from services.rag_service import rag_service
 
 from api.exceptions import generic_exception_handler
+
+
 
 
 @asynccontextmanager
@@ -27,8 +30,13 @@ app = FastAPI(
     title="Career Copilot",
     lifespan=lifespan
 )
-
-app.include_router(router)
+@app.get("/")
+def health():
+    return {
+        "message": "healthy"
+    }
+app.include_router(career_router)
+app.include_router(report_router)
 
 app.add_exception_handler(
     Exception,

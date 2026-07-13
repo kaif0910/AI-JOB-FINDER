@@ -4,6 +4,6 @@ rag_service.load_resume("data/resume.pdf")
 
 print(
     rag_service.search(
-        "what is my name"
+        "what are my projects"
     )
 )
