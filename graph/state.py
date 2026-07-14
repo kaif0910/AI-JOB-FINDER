@@ -7,11 +7,9 @@ class AgentState(TypedDict):
 
     job_requirements: list
 
-    analysis: str
+    response: str
 
-    report_content: str 
-
-    report_path: str
+    intent: str
 
 
 def create_initial_state(
