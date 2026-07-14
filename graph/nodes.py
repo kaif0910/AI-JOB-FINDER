@@ -71,3 +71,8 @@ def report_node(state):
     state["report_path"] = result["file_path"]
 
     return state
+
+
+def intent_node(state):
+
+    
