@@ -1,0 +1,3 @@
+invalid type: string "Movie Ticket Booking System(GitHub)\nDeveloped a scalable backend service withRedis-based distributed seat lockingto handle concurrent booking\nrequests and prevent race conditions. Designed REST APIs using Node.js, Express.js, MongoDB, and Redis.\nNotification & Scheduler Service(GitHub)\nMN bool_value INTEGER;
+ALTER TABLE segment_metadata ADD COLUMN bool_value INTEGER;
+ÿÿÿÿ
