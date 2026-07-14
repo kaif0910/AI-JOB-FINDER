@@ -103,10 +103,10 @@ Return ONLY ONE WORD.
 Question:
 {state["question"]}
 """
-    response = intent_llm.invoke(prompt)
+    response = llm.invoke(prompt)
 
-    state["intent"] = response.intent
-    print("Intent:", response.intent)
+    state["intent"] = response.content.strip().lower()
+    print("Intent:", state["intent"])
 
     return state
     
