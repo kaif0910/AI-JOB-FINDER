@@ -20,7 +20,6 @@ def create_initial_state(
         "question": question,
         "resume_context": "",
         "job_requirements": [],
-        "analysis": "",
-        "report_content": "",
-        "report_path": ""
+        "intent": "",
+        "response": ""
     }
