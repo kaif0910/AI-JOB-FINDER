@@ -1,73 +1,68 @@
-import type { AnalysisResponse } from "../types/career";
+import type {
+    ChatResponse,
+} from "../types/career";
+
 import ReactMarkdown from "react-markdown";
-interface Props {
 
-    response: AnalysisResponse | null;
+interface Props{
 
-    loading: boolean;
+    response:ChatResponse | null;
 
-    error: string;
+    loading:boolean;
+
 }
 
 export default function ChatBox({
 
     response,
 
-    loading,
+    loading
 
-    error
+}:Props){
 
-}: Props) {
+    return(
 
-    return (
-
-        <div className="max-w-5xl mx-auto p-6 pb-32">
-
-            <h1 className="text-4xl font-bold mb-10">
-
-                Career Copilot
-
-            </h1>
+        <div className="flex-1 overflow-y-auto p-8 bg-slate-50">
 
             {loading && (
 
-                <div className="text-center py-10">
+                <h2>
 
-                    <div className="animate-pulse">
+                    🤖 Thinking...
 
-                        🤖 Analyzing Resume...
+                </h2>
 
-                    </div>
+            )}
+
+            {!loading && !response &&(
+
+                <div className="text-center mt-24">
+
+                    <h2 className="text-5xl font-bold">
+
+                        Career Copilot
+
+                    </h2>
+
+                    <p className="mt-4 text-gray-500">
+
+                        Ask anything about your resume.
+
+                    </p>
 
                 </div>
 
             )}
 
-            {error && (
+            {response &&(
 
-                <p className="text-red-500">
+                <div className="bg-white rounded-xl shadow p-6">
 
-                    {error}
+                    <ReactMarkdown>
 
-                </p>
+                        {response.analysis}
 
-            )}
-
-            {response && (
-
-                <div>
-
-                    <h2 className="text-2xl font-semibold mb-4">
-
-                        Analysis
-
-                    </h2>
-
-                    <div className="bg-white rounded-xl shadow p-6">
-                        <ReactMarkdown>
-                            {response.analysis}
-                        </ReactMarkdown>
-                    </div>
+                    </ReactMarkdown>
 
                 </div>
 

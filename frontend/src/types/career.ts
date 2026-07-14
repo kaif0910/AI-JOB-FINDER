@@ -1,10 +1,13 @@
-export interface Job{
-    title: string;
-    url: string;
+export interface ChatRequest {
+    question: string;
 }
 
-export interface AnalysisResponse { 
+export interface ChatResponse {
     analysis: string;
-    report_url: string;
-    jobs?: Job[];
+    report_path: string | null;
+}
+
+export interface Job {
+    title: string;
+    url: string;
 }

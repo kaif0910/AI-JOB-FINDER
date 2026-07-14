@@ -1,3 +1,5 @@
+import { Send } from "lucide-react";
+
 interface Props {
 
     question: string;
@@ -7,6 +9,8 @@ interface Props {
     >;
 
     onSend: () => void;
+
+    loading: boolean;
 }
 
 export default function ChatInput({
@@ -15,31 +19,37 @@ export default function ChatInput({
 
     setQuestion,
 
-    onSend
+    onSend,
+
+    loading,
 
 }: Props) {
 
     return (
 
-        <div className="fixed bottom-0 w-full p-4 bg-white border-t">
+        <div className="border-t bg-white p-5">
 
             <div className="flex gap-3">
 
                 <input
 
-                    className="flex-1 border rounded-lg p-3"
+                    className="flex-1 rounded-xl border border-gray-300 px-5 py-4"
 
                     placeholder="Ask anything..."
 
                     value={question}
 
-                    onChange={(e) =>
-                        setQuestion(e.target.value)
+                    onChange={(e)=>
+
+                        setQuestion(
+                            e.target.value
+                        )
+
                     }
 
-                    onKeyDown={(e) => {
+                    onKeyDown={(e)=>{
 
-                        if (e.key === "Enter") {
+                        if(e.key==="Enter"){
 
                             onSend();
 
@@ -51,13 +61,15 @@ export default function ChatInput({
 
                 <button
 
-                    className="bg-blue-600 text-white px-6 rounded-lg"
+                    disabled={loading}
 
                     onClick={onSend}
 
+                    className="bg-blue-600 text-white rounded-xl px-6"
+
                 >
 
-                    Send
+                    <Send/>
 
                 </button>
 
