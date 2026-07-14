@@ -94,6 +94,11 @@ def intent_node(state: AgentState):
     """
     response = llm.invoke(prompt)
 
+    print("=" * 50)
+    print("RAW LLM RESPONSE:")
+    print(repr(response.content))
+    print("=" * 50)
+
     result = parser_service.parse_json(
         response.content,
         IntentClassification

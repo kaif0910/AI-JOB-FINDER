@@ -1,5 +1,5 @@
 import json 
-
+import re
 from pydantic import BaseModel
 
 class ParserService:
@@ -9,6 +9,23 @@ class ParserService:
         response: str,
         schema: type[BaseModel]
     ):
+        response = response.strip()
+
+        response = re.sub(
+            r"^```(?:json)?",
+            "",
+            response,
+            flags=re.IGNORECASE
+        )
+
+        response = re.sub(
+            r"```$",
+            "",
+            response
+        )
+
+        response = response.strip()
+
         data = json.loads(response)
 
         return schema.model_validate(data)

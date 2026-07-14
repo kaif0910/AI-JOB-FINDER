@@ -12,4 +12,5 @@ class IntentClassification(BaseModel):
 class JobQuery(BaseModel):
     role: str
     location: str
-    experince: str
+    experience: str
+    url: str
