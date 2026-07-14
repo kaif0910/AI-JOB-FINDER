@@ -1,20 +1,31 @@
 from graph.workflow import workflow
+from graph.state import create_initial_state
+
+
 from services.rag_service import rag_service
 
-rag_service.load_resume("data/resume.pdf")
+rag_service.load_resume('data/resume.pdf')
 
-state = {
-    "question": "Compare my resume with the latest backend engineer requirements",
+questions = [
+    "What are my projects?",
+    "Give me backend jobs in India",
+    "Compare my resume with backend jobs",
+    "Hello"
+]
 
-    "resume_context": "",
+for question in questions:
 
-    "job_requirements": [],
+    print("=" * 60)
+    print("QUESTION:", question)
 
-    "analysis": "",
+    state = create_initial_state(question)
 
-    "report_path": ""
-}
+    result = workflow.invoke(state)
 
-result = workflow.invoke(state)
+    print("\nIntent:")
+    print(result["intent"])
 
-print(result)
+    print("\nResponse:")
+    print(result["response"][:500])
+
+    print("\n")

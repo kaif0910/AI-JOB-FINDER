@@ -6,8 +6,7 @@ from graph.nodes import(
     intent_node,
     resume_node,
     jobs_node,
-    response_node,
-    route
+    response_node
 )
 
 def intent_router(state: AgentState):
@@ -25,7 +24,7 @@ def intent_router(state: AgentState):
         return "jobs"
 
     if intent == "compare":
-        return "resume"
+        return "compare"
 
     return "response"
 
@@ -97,9 +96,10 @@ graph.add_conditional_edges(
     "intent",
     intent_router,
     {
-        "resume": 'resume',
+        "resume": "resume",
         "jobs": "jobs",
-        "general": "response",
+        "compare": "resume",
+        "response": "response",
     }
 )
 

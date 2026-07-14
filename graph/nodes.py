@@ -24,7 +24,7 @@ def resume_node(state: AgentState):
     )
 
     state["resume_context"] = context
-
+    print(state)
     return state
 
 
@@ -42,15 +42,11 @@ def response_node(state: AgentState):
 
     prompt = ANALYSIS_PROMPT.format(
         question = state["question"],
-        resume = state["resume_context"],
-        jobs=state["job_requirements"]
+        resume_context = state["resume_context"],
+        job_requirements=state["job_requirements"]
     )
 
-    response = llm.invoke(
-        HumanMessage(
-            content= prompt
-        )
-    )
+    response = llm.invoke(prompt)
 
     state["response"] = response.content
 
@@ -80,24 +76,32 @@ def response_node(state: AgentState):
 
 
 def intent_node(state: AgentState):
-    prompt = """You are an intent classifier.
+    prompt = prompt = f"""
+You are an intent classifier.
 
-Possible intents:
+Classify the user's question into EXACTLY one of these intents.
 
-resume
+resume:
+Questions about the user's resume, skills, education, experience, projects, achievements.
 
-jobs
+jobs:
+Questions asking for job listings, hiring, openings, vacancies.
 
-compare
+compare:
+Questions asking to compare the resume with jobs, identify missing skills, ATS analysis, roadmap.
 
-general
+general:
+Greetings or anything unrelated.
 
-Return ONLY one word."""
-    response = llm.invoke(
-        HumanMessage(content=prompt)
-    )
+Return ONLY ONE WORD.
 
-    state["intent"] = response.content.strip().tolower()
+Question:
+{state["question"]}
+"""
+    response = llm.invoke(prompt)
+
+    state["intent"] = response.content.strip().lower()
+    print("Intent:", state["intent"])
 
     return state
     
