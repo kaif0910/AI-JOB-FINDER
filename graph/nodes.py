@@ -79,34 +79,28 @@ def response_node(state: AgentState):
 
     # return state
 
+from graph.models import IntentClassification
+
+from services.parser_service import parser_service
+
+from prompts.intent_prompt import INTENT_PROMPT
 
 def intent_node(state: AgentState):
     prompt = prompt = f"""
-You are an intent classifier.
+    {INTENT_PROMPT}
 
-Classify the user's question into EXACTLY one of these intents.
-
-resume:
-Questions about the user's resume, skills, education, experience, projects, achievements.
-
-jobs:
-Questions asking for job listings, hiring, openings, vacancies.
-
-compare:
-Questions asking to compare the resume with jobs, identify missing skills, ATS analysis, roadmap.
-
-general:
-Greetings or anything unrelated.
-
-Return ONLY ONE WORD.
-
-Question:
-{state["question"]}
-"""
+    Question:
+    {state["question"]}
+    """
     response = llm.invoke(prompt)
 
-    state["intent"] = response.content.strip().lower()
-    print("Intent:", state["intent"])
+    result = parser_service.parse_json(
+        response.content,
+        IntentClassification
+    )
+
+    state["intent"] = result.intent
+    print("Intent:", result.intent)
 
     return state
     
