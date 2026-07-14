@@ -1,6 +1,7 @@
 from graph.state import AgentState
 import os
 from dotenv import load_dotenv
+from langchain_core.messages import HumanMessage
 
 load_dotenv()
 
@@ -73,6 +74,25 @@ def report_node(state):
     return state
 
 
-def intent_node(state):
+def intent_node(state: AgentState):
+    prompt = """You are an intent classifier.
+
+Possible intents:
+
+resume
+
+jobs
+
+analysis
+
+general
+
+Return ONLY one word."""
+    response = llm.invoke(state)
+
+    state["intent"] = response.content
+
+    return state
+    
 
     
