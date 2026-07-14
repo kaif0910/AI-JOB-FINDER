@@ -38,40 +38,45 @@ def jobs_node(state: AgentState):
 
     return state
 
-def analysis_node(state: AgentState):
+def response_node(state: AgentState):
 
     prompt = ANALYSIS_PROMPT.format(
+        question = state["question"],
         resume = state["resume_context"],
         jobs=state["job_requirements"]
     )
 
-    response = llm.invoke(prompt)
+    response = llm.invoke(
+        HumanMessage(
+            content= prompt
+        )
+    )
 
-    state["analysis"] = response.content
+    state["response"] = response.content
 
     return state
 
 
 
-def report_node(state):
+# def report_node(state):
 
-    prompt = REPORT_PROMPT.format(
-        analysis= state["analysis"]
-    )
+#     prompt = REPORT_PROMPT.format(
+#         analysis= state["analysis"]
+#     )
 
-    report = llm.invoke(prompt)
+#     report = llm.invoke(prompt)
 
-    state["report_content"] = report.content
+#     state["report_content"] = report.content
 
-    result = report_service.generate_report(
+#     result = report_service.generate_report(
 
-        report.content
+#         report.content
 
-    )
+#     )
 
-    state["report_path"] = result["file_path"]
+    # state["report_path"] = result["file_path"]
 
-    return state
+    # return state
 
 
 def intent_node(state: AgentState):
@@ -83,14 +88,16 @@ resume
 
 jobs
 
-analysis
+compare
 
 general
 
 Return ONLY one word."""
-    response = llm.invoke(state)
+    response = llm.invoke(
+        HumanMessage(content=prompt)
+    )
 
-    state["intent"] = response.content
+    state["intent"] = response.content.strip().tolower()
 
     return state
     

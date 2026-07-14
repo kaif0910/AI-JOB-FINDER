@@ -1,13 +1,13 @@
-from typing import TypedDict    # langgraph doesn't create an object , it passes around the dictionary. type safety and not a new data structure 
+from typing import TypedDict, NotRequired   # langgraph doesn't create an object , it passes around the dictionary. type safety and not a new data structure 
 
 class AgentState(TypedDict): 
     question: str
 
-    resume_context: str
+    resume_context: NotRequired[str]
 
-    job_requirements: list
+    job_requirements: NotRequired[list]
 
-    response: str
+    response: NotRequired[str]
 
     intent: str
 
