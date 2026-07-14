@@ -2,6 +2,7 @@ from graph.state import AgentState
 import os
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
+from graph.models import IntentClassification
 
 load_dotenv()
 
@@ -16,6 +17,10 @@ from langchain_groq import ChatGroq
 llm = ChatGroq(
     model="meta-llama/llama-4-scout-17b-16e-instruct",
     api_key=os.getenv("GROQ_API_KEY")
+)
+
+intent_llm = llm.with_structured_output(
+    IntentClassification
 )
 
 def resume_node(state: AgentState):
@@ -98,10 +103,10 @@ Return ONLY ONE WORD.
 Question:
 {state["question"]}
 """
-    response = llm.invoke(prompt)
+    response = intent_llm.invoke(prompt)
 
-    state["intent"] = response.content.strip().lower()
-    print("Intent:", state["intent"])
+    state["intent"] = response.intent
+    print("Intent:", response.intent)
 
     return state
     

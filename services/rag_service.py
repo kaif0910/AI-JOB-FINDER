@@ -11,15 +11,22 @@ load_dotenv()
 class RAGService:
 
     def __init__(self):
-        self.embedding_model = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L6-v2"
-        )
+        self.embedding_model = None
 
         self.vector_store = None
         self.retriever = None
 
-    def load_resume(self, pdf_path: str) -> None:
+    def initialize(self):
+        if self.embedding_model is not None:
+            return 
+        print("Loading Embedding Model...")
+        self.embedding_model = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
+        print("Embedding Model Loaded.")
+    def load_resume(self, pdf_path: str, collection_name= "resume") -> None:
 
+        self.initialize()
         # Load PDF
         loader = PyPDFLoader(pdf_path)
         documents = loader.load()
@@ -34,11 +41,12 @@ class RAGService:
 
         # Create vector database
         self.vector_store = Chroma(
-            collection_name="resume",
+            collection_name=collection_name,
             embedding_function=self.embedding_model,
             persist_directory="./chroma_db"
         )
 
+        self.vector_store.reset_collection()
         # Store chunks
         self.vector_store.add_documents(chunks)
 
