@@ -1,71 +1,34 @@
-import { useState } from "react";
-
-import { analyzeResume } from "../api/career";
-
-import type { AnalysisResponse } from "../types/career";
-
 import Navbar from "../components/Navbar";
-
-import ChatBox from "../components/ChatBox";
-import ChatInput from "../components/ChatInput";
 
 export default function Home() {
 
-    const [question, setQuestion] = useState("");
-
-    const [response, setResponse] =
-        useState<AnalysisResponse | null>(null);
-
-    const [loading, setLoading] = useState(false);
-
-    const [error, setError] = useState("");
-
-    async function handleSubmit() {
-
-        if (!question.trim()) return;
-
-        try {
-
-            setLoading(true);
-
-            setError("");
-
-            const result = await analyzeResume(question);
-
-            setResponse(result);
-
-        } catch (err) {
-
-            console.error(err);
-
-            setError("Something went wrong.");
-
-        } finally {
-
-            setLoading(false);
-
-        }
-    }
-
     return (
 
-        <div className="min-h-screen bg-gray-100">
+        <>
 
             <Navbar />
 
-            <ChatBox
-                response={response}
-                loading={loading}
-                error={error}
-            />
+            <main className="max-w-6xl mx-auto py-10 px-6">
 
-            <ChatInput
-                question={question}
-                setQuestion={setQuestion}
-                onSend={handleSubmit}
-            />
+                <div className="bg-white rounded-xl shadow p-8">
 
-        </div>
+                    <h2 className="text-6xl font-bold text-red-500">
+
+                        Welcome 👋
+
+                    </h2>
+
+                    <p className="text-gray-600 mt-3">
+
+                        Ask anything about your resume and backend career.
+
+                    </p>
+
+                </div>
+
+            </main>
+
+        </>
 
     );
 
