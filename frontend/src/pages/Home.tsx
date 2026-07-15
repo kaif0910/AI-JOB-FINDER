@@ -92,9 +92,9 @@
 
 import Navbar from "../components/Navbar";
 
-import ChatWindow from "../components/ChatWindow";
-
 import ChatInput from "../components/ChatInput";
+
+import ChatWindow from "../components/ChatWindow";
 
 import { useChat } from "../hooks/useChat";
 
