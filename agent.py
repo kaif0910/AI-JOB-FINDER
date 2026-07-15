@@ -49,7 +49,12 @@ class CareerCopilot:
         print(result)
 
         return {
-            "response": result["response"]
+            "response": result["response"],
+            "jobs": result.get(
+                "job_requirements",
+                []
+            ),
+            "report_path": result
         }
 
 

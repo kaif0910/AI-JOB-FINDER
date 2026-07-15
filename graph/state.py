@@ -13,6 +13,8 @@ class AgentState(TypedDict):
 
     job_query: JobQuery | None
 
+    report_path: str | None
+
 
 def create_initial_state(
         question: str,
