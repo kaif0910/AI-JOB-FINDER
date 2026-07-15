@@ -90,17 +90,47 @@
 
 // }
 
-export default function Home() {
+import Navbar from "../components/Navbar";
 
-    return (
+import ChatWindow from "../components/ChatWindow";
 
-        <div className="flex h-screen items-center justify-center">
+import ChatInput from "../components/ChatInput";
 
-            <h1 className="text-4xl font-bold">
+import { useChat } from "../hooks/useChat";
 
-                Career Copilot
+export default function Home(){
 
-            </h1>
+    const{
+
+        messages,
+
+        loading,
+
+        sendMessage
+
+    }=useChat();
+
+    return(
+
+        <div className="flex h-screen flex-col">
+
+            <Navbar/>
+
+            <ChatWindow
+
+                messages={messages}
+
+                loading={loading}
+
+            />
+
+            <ChatInput
+
+                loading={loading}
+
+                onSend={sendMessage}
+
+            />
 
         </div>
 
