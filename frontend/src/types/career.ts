@@ -13,7 +13,7 @@
 // }
 
 
-import api from "./client";
+import api from "../api/client";
 
 import type { ChatResponse } from "../types/api";
 

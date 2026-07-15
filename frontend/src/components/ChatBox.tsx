@@ -1,6 +1,6 @@
 import type {
     ChatResponse,
-} from "../types/career";
+} from "../types/api";
 
 import ReactMarkdown from "react-markdown";
 
@@ -60,7 +60,7 @@ export default function ChatBox({
 
                     <ReactMarkdown>
 
-                        {response.analysis}
+                        {response.response}
 
                     </ReactMarkdown>
 
