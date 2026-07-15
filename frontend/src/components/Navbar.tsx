@@ -1,20 +1,24 @@
-export default function Navbar() {
+export default function Navbar(){
 
-    return (
+    return(
 
-        <nav className="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
+        <nav
+            className="h-16 border-b bg-white
+            flex items-center justify-between
+            px-8"
+        >
 
             <div>
 
-                <h1 className="text-2xl font-bold">
+                <h1 className="text-xl font-bold">
 
                     Career Copilot
 
                 </h1>
 
-                <p className="text-sm text-gray-500">
+                <p className="text-xs text-gray-500">
 
-                    AI Career Assistant
+                    LangGraph • FastAPI • React
 
                 </p>
 
