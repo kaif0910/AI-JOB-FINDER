@@ -37,6 +37,8 @@ class JobService:
             jobs.append(
                 {
                     "title": result["title"],
+                    "company": None,
+                    "location": None,
                     "url": result["url"],
                     "content": result["content"]
                 }
