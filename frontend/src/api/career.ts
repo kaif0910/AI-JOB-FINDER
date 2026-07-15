@@ -37,3 +37,30 @@ export async function chat(
     return response.data;
 
 }
+
+
+export async function uploadResume(
+
+    file:File
+
+){
+
+    const formData=new FormData();
+
+    formData.append(
+
+        "file",
+
+        file
+
+    );
+
+    return api.post(
+
+        "/resume/upload",
+
+        formData
+
+    );
+
+}
