@@ -1,3 +1,5 @@
+import type { Job } from "./api"
+
 export interface Message{
 
     id:string;
@@ -5,5 +7,7 @@ export interface Message{
     role:"user"|"assistant";
 
     content:string;
+
+    jobs?:Job[];
 
 }
