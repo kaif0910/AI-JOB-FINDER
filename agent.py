@@ -54,7 +54,9 @@ class CareerCopilot:
                 "job_requirements",
                 []
             ),
-            "report_path": result
+            "report_path": result.get(
+                "report_path"
+            )
         }
 
 
