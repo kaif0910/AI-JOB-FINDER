@@ -1,3 +1,11 @@
+import {
+
+    useEffect,
+
+    useRef
+
+} from "react";
+
 import type { Message } from "../types/chat";
 
 import ChatMessage from "./ChatMessage";
@@ -17,6 +25,47 @@ export default function ChatWindow({
     loading
 
 }:Props){
+
+    const bottomRef=useRef<HTMLDivElement>(null);
+
+    useEffect(()=>{
+
+        bottomRef.current?.scrollIntoView({
+
+            behavior:"smooth"
+
+        });
+
+    },[messages,loading]);
+
+    if(messages.length===0){
+
+        return(
+
+            <div className="flex flex-1 items-center justify-center">
+
+                <div className="text-center">
+
+                    <h1 className="text-5xl font-bold">
+
+                        Career Copilot
+
+                    </h1>
+
+                    <p className="mt-4 text-gray-500">
+
+                        Ask me anything about your resume,
+                        jobs or career.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        );
+
+    }
 
     return(
 
@@ -47,13 +96,15 @@ export default function ChatWindow({
 
                 loading &&
 
-                <div className="text-gray-500">
+                <div className="text-gray-500 animate-pulse">
 
-                    Thinking...
+                    Career Copilot is thinking...
 
                 </div>
 
             }
+
+            <div ref={bottomRef}/>
 
         </div>
 
