@@ -1,90 +1,108 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-import Navbar from "../components/Navbar";
-import ChatBox from "../components/ChatBox";
-import ChatInput from "../components/ChatInput";
+// import Navbar from "../components/Navbar";
+// import ChatBox from "../components/ChatBox";
+// import ChatInput from "../components/ChatInput";
 
-import { analyzeResume } from "../api/career";
+// import { chat } from "../api/career";
 
-import type {
-    ChatResponse,
-} from "../types/career";
+// import type {
+//     ChatResponse,
+// } from "../types/career";
 
-export default function Home(){
+// export default function Home(){
 
-    const [question,setQuestion]=useState("");
+//     const [question,setQuestion]=useState("");
 
-    const [loading,setLoading]=useState(false);
+//     const [loading,setLoading]=useState(false);
 
-    const [response,setResponse]=
-        useState<ChatResponse|null>(null);
+//     const [response,setResponse]=
+//         useState<ChatResponse|null>(null);
 
-    async function handleSubmit(){
+//     async function handleSubmit(){
 
-        if(!question.trim()) return;
+//         if(!question.trim()) return;
 
-        try{
+//         try{
 
-            setLoading(true);
+//             setLoading(true);
 
-            const result=
-                await analyzeResume(question);
+//             const result=
+//                 await analyzeResume(question);
 
-            setResponse(result);
+//             setResponse(result);
 
-            setQuestion("");
+//             setQuestion("");
 
-        }
+//         }
 
-        catch(error){
+//         catch(error){
 
-            console.log(error);
+//             console.log(error);
 
-        }
+//         }
 
-        finally{
+//         finally{
 
-            setLoading(false);
+//             setLoading(false);
 
-        }
+//         }
 
-    }
+//     }
 
-    return(
+//     return(
 
-        <>
+//         <>
 
-            <Navbar/>
+//             <Navbar/>
 
-            <main className="max-w-6xl mx-auto px-6 py-8">
+//             <main className="max-w-6xl mx-auto px-6 py-8">
 
-                <div className="bg-white rounded-2xl shadow-lg h-[80vh] flex flex-col overflow-hidden">
+//                 <div className="bg-white rounded-2xl shadow-lg h-[80vh] flex flex-col overflow-hidden">
 
-                    <ChatBox
+//                     <ChatBox
 
-                        response={response}
+//                         response={response}
 
-                        loading={loading}
+//                         loading={loading}
 
-                    />
+//                     />
 
-                    <ChatInput
+//                     <ChatInput
 
-                        question={question}
+//                         question={question}
 
-                        setQuestion={setQuestion}
+//                         setQuestion={setQuestion}
 
-                        onSend={handleSubmit}
+//                         onSend={handleSubmit}
 
-                        loading={loading}
+//                         loading={loading}
 
-                    />
+//                     />
 
-                </div>
+//                 </div>
 
-            </main>
+//             </main>
 
-        </>
+//         </>
+
+//     );
+
+// }
+
+export default function Home() {
+
+    return (
+
+        <div className="flex h-screen items-center justify-center">
+
+            <h1 className="text-4xl font-bold">
+
+                Career Copilot
+
+            </h1>
+
+        </div>
 
     );
 

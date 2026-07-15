@@ -1,38 +1,27 @@
-import { BriefcaseBusiness } from "lucide-react";
-
 export default function Navbar() {
+
     return (
-        <header className="bg-white shadow">
 
-            <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+        <nav className="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
 
-                <div className="flex items-center gap-3">
+            <div>
 
-                    <BriefcaseBusiness
-                        size={34}
-                        className="text-blue-600"
-                    />
+                <h1 className="text-2xl font-bold">
 
-                    <div>
+                    Career Copilot
 
-                        <h1 className="text-2xl font-bold">
+                </h1>
 
-                            Career Copilot
+                <p className="text-sm text-gray-500">
 
-                        </h1>
+                    AI Career Assistant
 
-                        <p className="text-sm text-gray-500">
-
-                            AI Backend Career Mentor
-
-                        </p>
-
-                    </div>
-
-                </div>
+                </p>
 
             </div>
 
-        </header>
+        </nav>
+
     );
+
 }
