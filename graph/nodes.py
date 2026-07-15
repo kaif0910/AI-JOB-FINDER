@@ -1,16 +1,16 @@
 from graph.state import AgentState
 import os
 from dotenv import load_dotenv
-from langchain_core.messages import HumanMessage
 from graph.models import IntentClassification
 
 load_dotenv()
 
 from services.rag_service import rag_service
 from services.job_service import job_service
-from services.report_service import report_service
 from prompts.analysis_prompt import ANALYSIS_PROMPT
-from prompts.report_prompt import REPORT_PROMPT
+from graph.models import JobQuery
+from prompts.job_prompt import JOB_EXTRACTION_PROMPT
+import json
 
 from langchain_groq import ChatGroq
 
@@ -19,9 +19,20 @@ llm = ChatGroq(
     api_key=os.getenv("GROQ_API_KEY")
 )
 
-intent_llm = llm.with_structured_output(
-    IntentClassification
-)
+# intent_llm = llm.with_structured_output(
+#     IntentClassification
+# )
+
+def extract_job_query(question: str) -> JobQuery:
+
+    prompt = JOB_EXTRACTION_PROMPT + f"\n\nQuestion:\n{question}"
+
+    response = llm.invoke(prompt)
+
+    return parser_service.parse_json(
+        response.content,
+        JobQuery
+    )
 
 def resume_node(state: AgentState):
     context = rag_service.search(
@@ -29,14 +40,21 @@ def resume_node(state: AgentState):
     )
 
     state["resume_context"] = context
-    print(state)
     return state
 
 
 def jobs_node(state: AgentState):
 
+    job_query = extract_job_query(
+        state["question"]
+    )
+
+    state["job_query"] = job_query
+
     jobs = job_service.search_job_requirements(
-        role="backend engineer"
+        role=job_query.role,
+        location=job_query.location,
+        experience=job_query.experience
     )
 
     state["job_requirements"] = jobs
@@ -86,12 +104,10 @@ from services.parser_service import parser_service
 from prompts.intent_prompt import INTENT_PROMPT
 
 def intent_node(state: AgentState):
-    prompt = prompt = f"""
-    {INTENT_PROMPT}
-
-    Question:
-    {state["question"]}
-    """
+    prompt = (
+        INTENT_PROMPT 
+        + f"\n\nQuestion:\n{state["question"]}"
+    )
     response = llm.invoke(prompt)
 
     # print("=" * 50)
@@ -108,6 +124,9 @@ def intent_node(state: AgentState):
     print("Intent:", result.intent)
 
     return state
+
+
+
     
 
     

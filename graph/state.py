@@ -23,5 +23,6 @@ def create_initial_state(
         "resume_context": "",
         "job_requirements": [],
         "intent": "",
-        "response": ""
+        "response": "",
+        "job_query": None
     }
