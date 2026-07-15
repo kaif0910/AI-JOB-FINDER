@@ -118,7 +118,7 @@ export default function Home(){
 
             <Navbar/>
 
-            <div className="px-6 py-4">
+            <div className="px-6 py-4 flex v-screen justify-center">
 
                 <UploadResume/>
 
