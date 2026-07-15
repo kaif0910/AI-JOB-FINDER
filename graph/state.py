@@ -26,5 +26,6 @@ def create_initial_state(
         "job_requirements": [],
         "intent": "",
         "response": "",
-        "job_query": None
+        "job_query": None,
+        "report_path": None
     }
