@@ -1,88 +1,88 @@
 import { useState } from "react";
 
-import { v4 as uuid } from "uuid";
-
 import { chat } from "../api/career";
+
+import { v4 as uuid } from "uuid";
 
 import type { Message } from "../types/chat";
 
-export function useChat() {
+export function useChat(){
 
-    const [messages, setMessages] = useState<Message[]>([]);
+    const [messages,setMessages]=useState<Message[]>([]);
 
-    const [loading, setLoading] = useState(false);
+    const [loading,setLoading]=useState(false);
 
-    async function sendMessage(question: string) {
+    async function sendMessage(question:string){
 
-        if (!question.trim()) return;
+        if(!question.trim()) return;
 
-        const userMessage: Message = {
+        const user:Message={
 
-            id: uuid(),
+            id:uuid(),
 
-            role: "user",
+            role:"user",
 
-            content: question
+            content:question
 
         };
 
-        setMessages(prev => [
+        setMessages(prev=>[
 
             ...prev,
 
-            userMessage
+            user
 
         ]);
 
         setLoading(true);
 
-        try {
+        try{
 
-            const response = await chat(question);
+            const result=await chat(question);
 
-            const aiMessage: Message = {
+            const ai:Message={
 
-                id: uuid(),
+                id:uuid(),
 
-                role: "assistant",
+                role:"assistant",
 
-                content: response.response
+                content:result.response
 
             };
 
-            setMessages(prev => [
+            setMessages(prev=>[
 
                 ...prev,
 
-                aiMessage
+                ai
 
             ]);
 
         }
 
-        catch (err) {
+        catch{
 
-            const aiMessage: Message = {
+            const error:Message={
 
-                id: uuid(),
+                id:uuid(),
 
-                role: "assistant",
+                role:"assistant",
 
-                content: "Something went wrong."
+                content:"❌ Something went wrong."
 
             };
 
-            setMessages(prev => [
+            setMessages(prev=>[
 
                 ...prev,
 
-                aiMessage
+                error
 
             ]);
 
         }
 
-        finally {
+        finally{
 
             setLoading(false);
 
@@ -90,7 +90,7 @@ export function useChat() {
 
     }
 
-    return {
+    return{
 
         messages,
 
