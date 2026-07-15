@@ -31,6 +31,7 @@ class RAGService:
         loader = PyPDFLoader(pdf_path)
         documents = loader.load()
 
+
         # Split into chunks
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=800,
@@ -38,6 +39,7 @@ class RAGService:
         )
 
         chunks = splitter.split_documents(documents)
+
 
         # Create vector database
         self.vector_store = Chroma(
