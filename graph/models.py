@@ -13,4 +13,3 @@ class JobQuery(BaseModel):
     role: str
     location: str
     experience: str
-    url: str

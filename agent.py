@@ -46,6 +46,8 @@ class CareerCopilot:
 
         result = self.workflow.invoke(state)
 
+        print(result)
+
         return {
             "response": result["response"]
         }

@@ -46,9 +46,11 @@ export function useChat(){
 
                 role:"assistant",
 
-                content:result.data
+                content:result.response
 
             };
+
+            console.log("Backend Response:",result);
 
             setMessages(prev=>[
 
