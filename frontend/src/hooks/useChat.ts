@@ -46,7 +46,9 @@ export function useChat(){
 
                 role:"assistant",
 
-                content:result.response
+                content:result.response,
+
+                jobs:result.jobs
 
             };
 
