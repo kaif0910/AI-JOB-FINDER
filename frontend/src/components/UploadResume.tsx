@@ -1,28 +1,58 @@
+import {useState} from "react";
+
+import {uploadResume} from "../api/career";
+
 export default function UploadResume(){
+
+    const [loading,setLoading]=useState(false);
+
+    async function handleUpload(
+
+        e:React.ChangeEvent<HTMLInputElement>
+
+    ){
+
+        const file=e.target.files?.[0];
+
+        if(!file) return;
+
+        setLoading(true);
+
+        await uploadResume(file);
+
+        setLoading(false);
+
+        alert("Resume uploaded!");
+
+    }
 
     return(
 
-        <div
-            className="rounded-lg border
-            border-dashed
-            bg-white
-            p-8
-            text-center"
+        <label
+            className="cursor-pointer rounded-lg border border-dashed p-6 text-center"
         >
 
-            <h2 className="font-semibold">
+            <input
 
-                Upload Resume
+                type="file"
 
-            </h2>
+                hidden
 
-            <p className="mt-2 text-gray-500">
+                onChange={handleUpload}
 
-                Resume upload coming soon.
+            />
 
-            </p>
+            {
 
-        </div>
+                loading
+
+                ?"Uploading..."
+
+                :"Upload Resume"
+
+            }
+
+        </label>
 
     );
 
