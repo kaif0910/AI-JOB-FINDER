@@ -53,7 +53,14 @@ def health():
     }
 app.include_router(career_router)
 app.include_router(report_router)
+print("Including chat router")
 app.include_router(chat_router)
+print("chat router included")
+
+
+print("Registered Routes")
+for route in app.routes:
+    print(route.path)
 
 app.add_exception_handler(
     Exception,
