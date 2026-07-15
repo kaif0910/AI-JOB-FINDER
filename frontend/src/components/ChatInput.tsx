@@ -1,75 +1,72 @@
-import { Send } from "lucide-react";
+import { useState } from "react";
 
-interface Props {
+interface Props{
 
-    question: string;
+    onSend:(message:string)=>void;
 
-    setQuestion: React.Dispatch<
-        React.SetStateAction<string>
-    >;
+    loading:boolean;
 
-    onSend: () => void;
-
-    loading: boolean;
 }
 
 export default function ChatInput({
 
-    question,
-
-    setQuestion,
-
     onSend,
 
-    loading,
+    loading
 
-}: Props) {
+}:Props){
 
-    return (
+    const [message,setMessage]=useState("");
+
+    function handleSubmit(){
+
+        if(!message.trim()) return;
+
+        onSend(message);
+
+        setMessage("");
+
+    }
+
+    return(
 
         <div className="border-t bg-white p-5">
 
-            <div className="flex gap-3">
+            <div className="flex gap-4">
 
                 <input
 
-                    className="flex-1 rounded-xl border border-gray-300 px-5 py-4"
+                    value={message}
 
-                    placeholder="Ask anything..."
+                    onChange={e=>setMessage(e.target.value)}
 
-                    value={question}
-
-                    onChange={(e)=>
-
-                        setQuestion(
-                            e.target.value
-                        )
-
-                    }
-
-                    onKeyDown={(e)=>{
+                    onKeyDown={e=>{
 
                         if(e.key==="Enter"){
 
-                            onSend();
+                            handleSubmit();
 
                         }
 
                     }}
 
+                    placeholder="Ask anything..."
+
+                    className="flex-1 rounded-lg border px-4 py-3 outline-none"
+
                 />
 
                 <button
 
+                    onClick={handleSubmit}
+
                     disabled={loading}
 
-                    onClick={onSend}
-
-                    className="bg-blue-600 text-white rounded-xl px-6"
+                    className="rounded-lg bg-blue-600 px-6 text-white"
 
                 >
 
-                    <Send/>
+                    Send
 
                 </button>
 
