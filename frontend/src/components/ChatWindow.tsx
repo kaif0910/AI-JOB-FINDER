@@ -86,6 +86,8 @@ export default function ChatWindow({
 
                         content={message.content}
 
+                        jobs={message.jobs}
+
                     />
 
                 ))

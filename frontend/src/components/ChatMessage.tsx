@@ -8,7 +8,7 @@ interface Props{
 
     content:string;
 
-    jobs?:Job;
+    jobs?:Job[];
 
 }
 
@@ -16,7 +16,9 @@ export default function ChatMessage({
 
     role,
 
-    content
+    content,
+
+    jobs
 
 }:Props){
 
