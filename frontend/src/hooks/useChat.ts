@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 
 import { chat } from "../api/career";
 
-import { Message } from "../types/chat";
+import type { Message } from "../types/chat";
 
 export function useChat() {
 
