@@ -98,6 +98,8 @@ import ChatWindow from "../components/ChatWindow";
 
 import { useChat } from "../hooks/useChat";
 
+import  UploadResume   from "../components/UploadResume";
+
 export default function Home(){
 
     const{
@@ -115,6 +117,12 @@ export default function Home(){
         <div className="flex h-screen flex-col">
 
             <Navbar/>
+
+            <div className="px-6 py-4">
+
+                <UploadResume/>
+
+            </div>
 
             <ChatWindow
 
