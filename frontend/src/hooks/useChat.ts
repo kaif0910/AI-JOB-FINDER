@@ -1,32 +1,32 @@
-import {useState} from "react";
+import { useState } from "react";
 
-import {chat} from "../api/career";
+import { v4 as uuid } from "uuid";
 
-import {Message} from "../types/chat";
+import { chat } from "../api/career";
 
-import {v4 as uuid} from "uuid";
+import { Message } from "../types/chat";
 
-export function useChat(){
+export function useChat() {
 
-    const [messages,setMessages]=useState<Message[]>([]);
+    const [messages, setMessages] = useState<Message[]>([]);
 
-    const [loading,setLoading]=useState(false);
+    const [loading, setLoading] = useState(false);
 
-    async function sendMessage(question:string){
+    async function sendMessage(question: string) {
 
-        if(!question.trim()) return;
+        if (!question.trim()) return;
 
-        const userMessage:Message={
+        const userMessage: Message = {
 
-            id:uuid(),
+            id: uuid(),
 
-            role:"user",
+            role: "user",
 
-            content:question
+            content: question
 
         };
 
-        setMessages(prev=>[
+        setMessages(prev => [
 
             ...prev,
 
@@ -36,21 +36,21 @@ export function useChat(){
 
         setLoading(true);
 
-        try{
+        try {
 
-            const response=await chat(question);
+            const response = await chat(question);
 
-            const aiMessage:Message={
+            const aiMessage: Message = {
 
-                id:uuid(),
+                id: uuid(),
 
-                role:"assistant",
+                role: "assistant",
 
-                content:response.response
+                content: response.response
 
             };
 
-            setMessages(prev=>[
+            setMessages(prev => [
 
                 ...prev,
 
@@ -60,7 +60,29 @@ export function useChat(){
 
         }
 
-        finally{
+        catch (err) {
+
+            const aiMessage: Message = {
+
+                id: uuid(),
+
+                role: "assistant",
+
+                content: "Something went wrong."
+
+            };
+
+            setMessages(prev => [
+
+                ...prev,
+
+                aiMessage
+
+            ]);
+
+        }
+
+        finally {
 
             setLoading(false);
 
@@ -68,7 +90,7 @@ export function useChat(){
 
     }
 
-    return{
+    return {
 
         messages,
 

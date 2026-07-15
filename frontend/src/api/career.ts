@@ -1,8 +1,8 @@
 import api from "./client";
 
-import type {
-    ChatResponse,
-} from "../types/career";
+// import type {
+//     ChatResponse,
+// } from "../types/career";
 
 // export async function analyzeResume(
 //     question: string
@@ -19,7 +19,6 @@ import type {
 // }
 
 
-import api from "./client";
 
 export async function chat(
     question:string
