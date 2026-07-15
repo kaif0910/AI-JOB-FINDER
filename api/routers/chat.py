@@ -7,7 +7,7 @@ from agent import CareerCopilot
 
 from fastapi import Depends
 
-from api.schemas import ChatRequest
+from api.schemas import ChatRequest, ChatResponse
 
 router = APIRouter(
     tags=["Chat"]
@@ -19,6 +19,12 @@ async def chat(
     agent: CareerCopilot = Depends(get_agent)
 ):
 
-    return agent.chat(
+    result = agent.chat(
         request.question
+    )
+
+    return ChatResponse(
+        response = result["response"],
+        jobs=result["jobs"],
+        report_path=result["report_path"]
     )

@@ -5,10 +5,16 @@ from typing import List
 class ChatRequest(BaseModel):
     question: str
 
-
+class JobItem(BaseModel):
+    title: str
+    company: str | None= None
+    location: str | None = None
+    url: str
 class ChatResponse(BaseModel):
 
-    analysis: str
+    response: str
+
+    jobs: list[JobItem] = []
 
     report_path: str | None = None
 
