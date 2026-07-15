@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from api.routers.career import router as career_router
 from api.routers.reports import router as report_router
 from api.routers.chat import router as chat_router
+from api.routers.resume import router as resume_router
 
 from services.rag_service import rag_service
 
@@ -54,6 +55,7 @@ def health():
 app.include_router(career_router)
 app.include_router(report_router)
 app.include_router(chat_router)
+app.include_router(resume_router)
 
 
 
