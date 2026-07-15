@@ -16,27 +16,27 @@ export default function ChatMessage({
 
 }:Props){
 
-    const isUser = role==="user";
+    const isUser=role==="user";
 
     return(
 
         <div
             className={`flex ${
                 isUser
-                    ? "justify-end"
-                    : "justify-start"
+                ?"justify-end"
+                :"justify-start"
             }`}
         >
 
             <div
-                className={`max-w-3xl rounded-xl px-5 py-3 shadow
+                className={`max-w-3xl rounded-xl px-5 py-4 shadow leading-7
 
                 ${
                     isUser
 
-                    ? "bg-blue-600 text-white"
+                    ?"bg-blue-600 text-white"
 
-                    : "bg-white"
+                    :"bg-white border"
                 }`}
             >
 
