@@ -2,6 +2,10 @@ interface Props{
 
     title:string;
 
+    company?:string;
+
+    location?:string;
+
     url:string;
 
 }
@@ -10,19 +14,47 @@ export default function JobCard({
 
     title,
 
+    company,
+
+    location,
+
     url
 
 }:Props){
 
     return(
 
-        <div className="rounded-lg border bg-white p-5 shadow">
+        <div className="mt-4 rounded-lg border bg-gray-50 p-4">
 
-            <h2 className="font-semibold">
+            <h3 className="font-semibold text-lg">
 
                 {title}
 
-            </h2>
+            </h3>
+
+            {
+
+                company &&
+
+                <p>
+
+                    Company: {company}
+
+                </p>
+
+            }
+
+            {
+
+                location &&
+
+                <p>
+
+                    Location: {location}
+
+                </p>
+
+            }
 
             <a
 
@@ -30,11 +62,13 @@ export default function JobCard({
 
                 target="_blank"
 
-                className="text-blue-600"
+                rel="noopener noreferrer"
+
+                className="mt-2 inline-block rounded bg-blue-600 px-4 py-2 text-white"
 
             >
 
-                View Job
+                Apply Now
 
             </a>
 
