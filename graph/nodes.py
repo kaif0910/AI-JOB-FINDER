@@ -12,7 +12,7 @@ from prompts.analysis_prompt import ANALYSIS_PROMPT
 from graph.models import JobQuery
 from prompts.job_prompt import JOB_EXTRACTION_PROMPT
 import json
-from langchain_core.messages import SystemMessage
+from langchain_core.messages import SystemMessage, AIMessage
 
 from langchain_groq import ChatGroq
 
@@ -90,7 +90,11 @@ def response_node(state: AgentState):
         conversation
     )
 
-    state["response"] = response.content
+    state["messages"].append(
+        AIMessage(
+            content=response.content
+        )
+    )
 
     # result = report_service.generate_report(
     #     response.content
