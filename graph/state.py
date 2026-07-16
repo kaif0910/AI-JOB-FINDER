@@ -1,5 +1,8 @@
 from typing import TypedDict, NotRequired   # langgraph doesn't create an object , it passes around the dictionary. type safety and not a new data structure 
 from graph.models import JobQuery
+
+from langchain_core.messages import BaseMessage
+from langchain_core.messages import HumanMessage
 class AgentState(TypedDict): 
     question: str
 
@@ -15,6 +18,8 @@ class AgentState(TypedDict):
 
     report_path: str | None
 
+    messages: list[BaseMessage]
+
 
 def create_initial_state(
         question: str,
@@ -27,5 +32,10 @@ def create_initial_state(
         "intent": "",
         "response": "",
         "job_query": None,
-        "report_path": None
+        "report_path": None,
+        "messages": [
+            HumanMessage(
+                content=question
+            )
+        ]
     }
