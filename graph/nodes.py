@@ -47,9 +47,9 @@ def resume_node(state: AgentState):
 
 
 def jobs_node(state: AgentState):
-
+    latest = state["messages"][-1].content
     job_query = extract_job_query(
-        state["question"]
+        latest
     )
 
     state["job_query"] = job_query
