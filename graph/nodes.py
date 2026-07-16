@@ -77,6 +77,7 @@ def response_node(state: AgentState):
     conversation = [
         SystemMessage(
             content= ANALYSIS_PROMPT.format(
+                question = state["question"],
                 resume_context = state["resume_context"],
                 job_requirements= state["job_requirements"]
             )
