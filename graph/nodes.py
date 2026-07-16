@@ -37,8 +37,9 @@ def extract_job_query(question: str) -> JobQuery:
     )
 
 def resume_node(state: AgentState):
+    latest = state["messages"][-1].content
     context = rag_service.search(
-        state["question"]
+        latest
     )
 
     state["resume_context"] = context
