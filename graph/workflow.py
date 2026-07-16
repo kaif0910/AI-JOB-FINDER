@@ -128,5 +128,5 @@ graph.add_edge(
 )
 
 workflow = graph.compile(
-    chechpointer=memory
+    checkpointer=memory
 )

@@ -44,6 +44,8 @@ class CareerCopilot:
 
         state = create_initial_state(message)
 
+        print(session_id)
+
         result = self.workflow.invoke(
             state,
             config={
