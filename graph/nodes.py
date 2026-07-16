@@ -12,6 +12,7 @@ from prompts.analysis_prompt import ANALYSIS_PROMPT
 from graph.models import JobQuery
 from prompts.job_prompt import JOB_EXTRACTION_PROMPT
 import json
+from langchain_core.messages import SystemMessage
 
 from langchain_groq import ChatGroq
 
@@ -64,13 +65,30 @@ def jobs_node(state: AgentState):
 
 def response_node(state: AgentState):
 
-    prompt = ANALYSIS_PROMPT.format(
-        question = state["question"],
-        resume_context = state["resume_context"],
-        job_requirements=state["job_requirements"]
+    # prompt = ANALYSIS_PROMPT.format(
+    #     question = state["question"],
+    #     resume_context = state["resume_context"],
+    #     job_requirements=state["job_requirements"]
+    # )
+
+    # response = llm.invoke(prompt)
+
+    conversation = [
+        SystemMessage(
+            content= ANALYSIS_PROMPT.format(
+                resume_context = state["resume_context"],
+                job_requirements= state["job_requirements"]
+            )
+        )
+    ]
+
+    conversation.extend(
+        state["messages"]
     )
 
-    response = llm.invoke(prompt)
+    response = llm.invoke(
+        conversation
+    )
 
     state["response"] = response.content
 
