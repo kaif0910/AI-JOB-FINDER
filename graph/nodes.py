@@ -12,6 +12,7 @@ from prompts.analysis_prompt import ANALYSIS_PROMPT
 from graph.models import JobQuery
 from prompts.job_prompt import JOB_EXTRACTION_PROMPT
 import json
+from langchain_core.messages import SystemMessage, AIMessage
 
 from langchain_groq import ChatGroq
 
@@ -36,8 +37,9 @@ def extract_job_query(question: str) -> JobQuery:
     )
 
 def resume_node(state: AgentState):
+    latest = state["messages"][-1].content
     context = rag_service.search(
-        state["question"]
+        latest
     )
 
     state["resume_context"] = context
@@ -45,9 +47,9 @@ def resume_node(state: AgentState):
 
 
 def jobs_node(state: AgentState):
-
+    latest = state["messages"][-1].content
     job_query = extract_job_query(
-        state["question"]
+        latest
     )
 
     state["job_query"] = job_query
@@ -64,15 +66,39 @@ def jobs_node(state: AgentState):
 
 def response_node(state: AgentState):
 
-    prompt = ANALYSIS_PROMPT.format(
-        question = state["question"],
-        resume_context = state["resume_context"],
-        job_requirements=state["job_requirements"]
+    # prompt = ANALYSIS_PROMPT.format(
+    #     question = state["question"],
+    #     resume_context = state["resume_context"],
+    #     job_requirements=state["job_requirements"]
+    # )
+
+    # response = llm.invoke(prompt)
+
+    conversation = [
+        SystemMessage(
+            content= ANALYSIS_PROMPT.format(
+                question = state["question"],
+                resume_context = state["resume_context"],
+                job_requirements= state["job_requirements"]
+            )
+        )
+    ]
+
+    conversation.extend(
+        state["messages"]
     )
 
-    response = llm.invoke(prompt)
+    response = llm.invoke(
+        conversation
+    )
 
     state["response"] = response.content
+
+    state["messages"].append(
+        AIMessage(
+            content=response.content
+        )
+    )
 
     # result = report_service.generate_report(
     #     response.content
@@ -121,7 +147,7 @@ from prompts.intent_prompt import INTENT_PROMPT
 def intent_node(state: AgentState):
     prompt = (
         INTENT_PROMPT 
-        + f"\n\nQuestion:\n{state["question"]}"
+        + f"\n\nQuestion:\n{state["messages"][-1].content}"
     )
     response = llm.invoke(prompt)
 

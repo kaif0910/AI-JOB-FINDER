@@ -20,7 +20,8 @@ async def chat(
 ):
 
     result = agent.chat(
-        request.question
+        request.question,
+        request.session_id
     )
 
     return ChatResponse(

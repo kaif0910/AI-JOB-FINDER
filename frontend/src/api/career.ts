@@ -1,4 +1,5 @@
 import api from "./client";
+import { getSessionId } from "../utils/session";
 
 // import type {
 //     ChatResponse,
@@ -29,7 +30,8 @@ export async function chat(
         "/chat",
 
         {
-            question
+            question,
+            session_id: getSessionId()
         }
 
     );

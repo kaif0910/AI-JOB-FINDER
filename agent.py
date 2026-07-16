@@ -40,11 +40,20 @@ class CareerCopilot:
     def __init__(self):
         self.workflow = workflow
 
-    def chat(self, message: str):
+    def chat(self, message: str, session_id: str):
 
         state = create_initial_state(message)
 
-        result = self.workflow.invoke(state)
+        print(session_id)
+
+        result = self.workflow.invoke(
+            state,
+            config={
+                "configurable":{
+                    "thread_id": session_id
+                }
+            }
+            )
 
         return {
             "response": result["response"],
