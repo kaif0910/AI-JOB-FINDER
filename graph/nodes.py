@@ -90,6 +90,8 @@ def response_node(state: AgentState):
         conversation
     )
 
+    state["response"] = response.content
+
     state["messages"].append(
         AIMessage(
             content=response.content
