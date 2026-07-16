@@ -2,17 +2,21 @@ from graph.state import AgentState
 import os
 from dotenv import load_dotenv
 from graph.models import IntentClassification
+import uuid
 
 load_dotenv()
 
 from services.rag_service import rag_service
 from services.job_service import job_service
+from services.report_service import report_service
 from prompts.analysis_prompt import ANALYSIS_PROMPT
 from graph.models import JobQuery
 from prompts.job_prompt import JOB_EXTRACTION_PROMPT
 import json
 
 from langchain_groq import ChatGroq
+
+filename = f"{uuid.uuid4()}.pdf"
 
 llm = ChatGroq(
     model="meta-llama/llama-4-scout-17b-16e-instruct",
@@ -72,6 +76,13 @@ def response_node(state: AgentState):
     response = llm.invoke(prompt)
 
     state["response"] = response.content
+
+    result = report_service.generate_report(
+        response.content,
+        filename=filename
+    )
+
+    state["report_path"] = result["file_path"]
 
     return state
 
