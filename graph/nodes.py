@@ -145,7 +145,7 @@ from prompts.intent_prompt import INTENT_PROMPT
 def intent_node(state: AgentState):
     prompt = (
         INTENT_PROMPT 
-        + f"\n\nQuestion:\n{state["question"]}"
+        + f"\n\nQuestion:\n{state["messages"][-1].content}"
     )
     response = llm.invoke(prompt)
 
