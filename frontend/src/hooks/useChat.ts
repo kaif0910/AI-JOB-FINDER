@@ -48,7 +48,9 @@ export function useChat(){
 
                 content:result.response,
 
-                jobs:result.jobs
+                jobs:result.jobs,
+
+                reportPath:result.report_path
 
             };
 
