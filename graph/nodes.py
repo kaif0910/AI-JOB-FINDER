@@ -78,7 +78,7 @@ def response_node(state: AgentState):
     #     response.content
     # )
 
-    if state["intent"] == "compare":
+    if state["intent"] in ["compare", "report"]:
         result = report_service.generate_report(
             response.content
         )

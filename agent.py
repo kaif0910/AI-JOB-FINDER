@@ -45,10 +45,6 @@ class CareerCopilot:
         state = create_initial_state(message)
 
         result = self.workflow.invoke(state)
-        print("=" * 50)
-        print("GRAPH RESULT")
-        print(result)
-        print("=" * 50)
 
         return {
             "response": result["response"],
