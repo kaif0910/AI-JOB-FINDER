@@ -88,6 +88,8 @@ export default function ChatWindow({
 
                         jobs={message.jobs}
 
+                        reportPath={message.reportPath}
+
                     />
 
                 ))

@@ -10,6 +10,8 @@ interface Props{
 
     jobs?:Job[];
 
+    reportPath?:string;
+
 }
 
 export default function ChatMessage({
