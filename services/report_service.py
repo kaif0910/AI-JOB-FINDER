@@ -15,8 +15,11 @@ class ReportService:
     def generate_report(
         self,
         report_content: str,
-        filename: str = f"{uuid4()}.pdf"
+        filename: str | None = None
     ) -> dict:
+
+        if filename is None:
+            filename = f"{uuid4()}.pdf"
 
         os.makedirs("reports", exist_ok=True)
 

@@ -2,7 +2,6 @@ from graph.state import AgentState
 import os
 from dotenv import load_dotenv
 from graph.models import IntentClassification
-import uuid
 
 load_dotenv()
 
@@ -15,8 +14,6 @@ from prompts.job_prompt import JOB_EXTRACTION_PROMPT
 import json
 
 from langchain_groq import ChatGroq
-
-filename = f"{uuid.uuid4()}.pdf"
 
 llm = ChatGroq(
     model="meta-llama/llama-4-scout-17b-16e-instruct",
@@ -77,12 +74,19 @@ def response_node(state: AgentState):
 
     state["response"] = response.content
 
-    result = report_service.generate_report(
-        response.content,
-        filename=filename
-    )
+    # result = report_service.generate_report(
+    #     response.content
+    # )
 
-    state["report_path"] = result["file_path"]
+    if state["intent"] == "compare":
+        result = report_service.generate_report(
+            response.content
+        )
+
+        state["report_path"] = result["file_path"]
+
+    else:
+        state["report_path"] = None
 
     return state
 

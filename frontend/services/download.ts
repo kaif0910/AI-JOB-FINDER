@@ -1,12 +1,12 @@
 export function downloadReport(
 
-    path:string
+    file_path:string
 
 ){
 
     window.open(
 
-        `http://127.0.0.1:8000/${path}`,
+        `http://127.0.0.1:8000/${file_path}`,
 
         "_blank"
 
