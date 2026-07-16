@@ -20,7 +20,9 @@ export default function ChatMessage({
 
     content,
 
-    jobs
+    jobs,
+
+    reportPath
 
 }:Props){
 
@@ -66,6 +68,25 @@ export default function ChatMessage({
 
                             />
                         )
+                    )
+                }
+
+
+                {
+                    reportPath && (
+                        <div className="mt-5">
+                            <a 
+                            href={`http://127.0.0.1:8000/reports/download/${reportPath}`}
+
+                            target="_blank"
+
+                            rel="noopener noreferrer"
+
+                            className="inline-block rounded-lg bg-green-600 px-5 py-3 text-white hover:bg-green-700 transition"
+                            >
+                                📄 Download Career Report 
+                            </a>
+                        </div>
                     )
                 }
 
