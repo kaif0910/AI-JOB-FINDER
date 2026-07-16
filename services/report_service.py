@@ -80,7 +80,7 @@ class ReportService:
 
             "status": "success",
 
-            "file_path": file_path
+            "file_path": filename
 
         }
 
