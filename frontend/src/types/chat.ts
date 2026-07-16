@@ -10,4 +10,6 @@ export interface Message{
 
     jobs?:Job[];
 
+    reportPath?:string;
+
 }
