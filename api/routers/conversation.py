@@ -15,4 +15,33 @@ def list_conversations():
 def create_conversation():
     return Conversation_service.create_conversation()
 
+@router.get("/{conversation_id}")
+def get_conversation(
+    conversation_id: str
+):
+    return Conversation_service.get_conversation(
+        conversation_id
+    )
 
+@router.delete("/{conversation_id}")
+def delete_conversation(
+    conversation_id
+):
+    return {
+        "message": "Conversation Deleted"
+    }
+
+
+@router.patch("/{conversation_id}/title")
+def update_title(
+    conversation_id,
+    title
+):
+    Conversation_service.update_title(
+        conversation_id,
+        title
+    )
+
+    return {
+        "message": " Title Updated"
+    }
