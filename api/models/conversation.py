@@ -14,8 +14,8 @@ def create_conversation():
     now = datetime.now()
 
     return Conversation(
-        id = str(uuid4())
-        title="New Chat"
+        id = str(uuid4()),
+        title="New Chat",
         created_at=now,
         updated_at=now,
         messages=[]
