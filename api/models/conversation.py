@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 from uuid import uuid4
+from models.message import ChatMessage
 
 
 class Conversation(BaseModel):
@@ -8,7 +9,7 @@ class Conversation(BaseModel):
     title: str
     created_at: datetime
     updated_at: datetime
-    messages: list[dict]
+    messages: list[ChatMessage]
 
 def create_conversation():
     now = datetime.now()
