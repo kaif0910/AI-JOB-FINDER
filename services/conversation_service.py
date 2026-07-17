@@ -106,8 +106,8 @@ class ConversationService:
 
         conversations = [
             conversations
-            for conversation in conversations: 
-            if Conversation["id"] != conversation_id
+            for conversation in conversations 
+            if conversation["id"] != conversation_id
         ]
         self.save(conversations)
 
