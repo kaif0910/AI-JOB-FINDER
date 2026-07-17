@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
-from uuid import uuid4
-from models.message import ChatMessage
+from uuid import uuid4 
+from api.models.message import ChatMessage
 
 
 class Conversation(BaseModel):
