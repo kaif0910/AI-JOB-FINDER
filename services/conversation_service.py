@@ -79,7 +79,7 @@ class ConversationService:
                 ]
 
                 conversation["updated_at"] = (
-                    datetime.now().isoformat
+                    datetime.now().isoformat()
                 )
 
                 break
