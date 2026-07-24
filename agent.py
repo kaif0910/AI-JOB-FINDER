@@ -3,7 +3,7 @@ from graph.workflow import workflow
 from graph.state import create_initial_state
 from services.job_service import job_service
 from services.title_service import title_service
-from services.conversation_service import Conversation_service
+from services.conversation_service import conversation_service
 
 # class CareerCopilot:
 #     def __init__(self):
@@ -44,13 +44,13 @@ class CareerCopilot:
 
     def chat(self, message: str, session_id: str):
 
-        conversation = Conversation_service.get_conversation(
+        conversation = conversation_service.get_conversation(
             session_id
         )
 
         if conversation is None:
-            conversation = Conversation_service.create_conversation(
-                session_id
+            conversation = conversation_service.create_conversation(
+                id=session_id
             )
 
         
@@ -66,7 +66,17 @@ class CareerCopilot:
             }
             )
 
-        Conversation_service.append_message
+        conversation_service.append_message(
+            session_id,
+            "user",
+            message
+        )
+
+        conversation_service.append_message(
+            session_id,
+            "assistant",
+            result["response"]
+        )
 
         return {
             "response": result["response"],

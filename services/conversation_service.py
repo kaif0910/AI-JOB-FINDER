@@ -113,13 +113,24 @@ class ConversationService:
 
     def append_message(
             self,
-            conversation_id: str,
-            content: str
+            conversation_id,
+            role,
+            content
     ):
         conversations = self.load()
-        conversations.append(
-            content: str
-        )
+        for conversation in conversations:
+            if conversation["id"] == conversation_id:
+                conversation["messages"].append({
+                    "role": role,
+                    "content": content,
+                    "created_at": datetime.now().isoformat()
+                })
 
 
-Conversation_service = ConversationService()
+                conversation["updated_at"] = datetime.now().isoformat()
+
+                break
+        self.save(conversations)
+
+
+conversation_service = ConversationService()
