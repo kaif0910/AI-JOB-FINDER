@@ -66,6 +66,8 @@ class CareerCopilot:
             }
             )
 
+        Conversation_service.append_message
+
         return {
             "response": result["response"],
             "jobs": result.get(

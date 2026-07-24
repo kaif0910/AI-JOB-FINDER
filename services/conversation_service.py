@@ -33,7 +33,7 @@ class ConversationService:
     def list_conversations(self):
         return self.load()
 
-    def create_conversation(self):
+    def create_conversation(self, conversation_id: str):
 
         conversations =  self.load()
 
@@ -110,6 +110,16 @@ class ConversationService:
             if conversation["id"] != conversation_id
         ]
         self.save(conversations)
+
+    def append_message(
+            self,
+            conversation_id: str,
+            content: str
+    ):
+        conversations = self.load()
+        conversations.append(
+            content: str
+        )
 
 
 Conversation_service = ConversationService()
