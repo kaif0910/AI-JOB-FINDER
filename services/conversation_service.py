@@ -83,7 +83,7 @@ class ConversationService:
                 )
 
                 break
-            self.save(conversations)
+        self.save(conversations)
 
 
 
@@ -105,7 +105,7 @@ class ConversationService:
         conversations = self.load()
 
         conversations = [
-            conversations
+            conversation
             for conversation in conversations 
             if conversation["id"] != conversation_id
         ]
