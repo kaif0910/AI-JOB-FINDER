@@ -78,6 +78,16 @@ class CareerCopilot:
             result["response"]
         )
 
+        if conversation["title"] == "New Chat":
+            title = title_service.generate_title(
+                message
+            )
+
+            conversation_service.update_title(
+                session_id,
+                title
+            )
+
         return {
             "response": result["response"],
             "jobs": result.get(
