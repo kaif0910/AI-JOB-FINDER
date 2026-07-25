@@ -66,3 +66,23 @@ export async function uploadResume(
     );
 
 }
+
+
+export async function getConversations() {
+    const response = await api.get("/conversations");
+    return response.data;
+}
+
+export async function getConversation(conversation_id: string) {
+    const response = await api.get(`/conversations/${conversation_id}`);
+    return response.data;
+}
+
+export async function createConversation() {
+    const response = await api.post("/conversations");
+    return response.data;
+}
+
+export async function deleteConversation(conversation_id: string) {
+    return api.delete(`/conversations/${conversation_id}`);
+}
