@@ -1,83 +1,83 @@
-import { useEffect,useState } from "react";
+// import { useEffect,useState } from "react";
 
-import {
+// import {
 
-    createConversation,
+//     createConversation,
 
-    getConversations,
+//     getConversations,
 
-    getConversation
+//     getConversation
 
-} from "../api/career";
+// } from "../api/career";
 
-import type { Conversation } from "../types/conversation";
+// import type { Conversation } from "../types/conversation";
 
-export function useConversation(){
+// export function useConversation(){
 
-    const [
+//     const [
 
-        conversations,
+//         conversations,
 
-        setConversations
+//         setConversations
 
-    ]=useState<Conversation[]>([]);
+//     ]=useState<Conversation[]>([]);
 
-    const [
+//     const [
 
-        activeConversation,
+//         activeConversation,
 
-        setActiveConversation
+//         setActiveConversation
 
-    ]=useState("");
+//     ]=useState("");
 
-    async function loadConversations(){
+//     async function loadConversations(){
 
-        const data=await getConversations();
+//         const data=await getConversations();
 
-        setConversations(data);
+//         setConversations(data);
 
-    }
+//     }
 
-    async function newConversation(){
+//     async function newConversation(){
 
-        const conversation= await createConversation();
+//         const conversation= await createConversation();
 
-        await loadConversations();
+//         await loadConversations();
 
-        setActiveConversation(
+//         setActiveConversation(
 
-            conversation.id
+//             conversation.id
 
-        );
+//         );
 
-    }
+//     }
 
-    async function openConversation(id: string){
-        const conversation = await getConversation(id);
-        setMessages(conversation.messages);
-        setActiveConversation(id)
-    }
+//     async function openConversation(id: string){
+//         const conversation = await getConversation(id);
+//         setMessages(conversation.messages);
+//         setActiveConversation(id)
+//     }
 
-    useEffect(()=>{
+//     useEffect(()=>{
 
-        loadConversations();
+//         loadConversations();
 
-    },[]);
+//     },[]);
 
-    return{
+//     return{
 
-        conversations,
+//         conversations,
 
-        activeConversation,
+//         activeConversation,
 
-        setActiveConversation,
+//         setActiveConversation,
 
-        newConversation,
+//         newConversation,
 
-        loadConversations,
+//         loadConversations,
 
-        openConversation
+//         openConversation
 
-    };
+//     };
 
-}
+// }
