@@ -50,7 +50,7 @@ class CareerCopilot:
 
         if conversation is None:
             conversation = conversation_service.create_conversation(
-                id=session_id
+                session_id
             )
 
         
@@ -78,7 +78,7 @@ class CareerCopilot:
             result["response"]
         )
 
-        if conversation["title"] == "New Chat":
+        if conversation.title == "New Chat":
             title = title_service.generate_title(
                 message
             )
@@ -97,7 +97,7 @@ class CareerCopilot:
             "report_path": result.get(
                 "report_path"
             ),
-            "conversation_title": conversation["title"]
+            "conversation_title": conversation.title
         }
 
 
