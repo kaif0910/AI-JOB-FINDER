@@ -1,26 +1,42 @@
-import { useState } from "react";
+import {
 
-interface Props{
+    useState
 
-    onSend:(message:string)=>void;
+} from "react";
 
-    loading:boolean;
+interface Props {
+
+    loading: boolean;
+
+    onSend: (message: string) => void;
 
 }
 
 export default function ChatInput({
 
-    onSend,
+    loading,
 
-    loading
+    onSend
 
-}:Props){
+}: Props) {
 
-    const [message,setMessage]=useState("");
+    const [
 
-    function handleSubmit(){
+        message,
 
-        if(!message.trim()) return;
+        setMessage
+
+    ] = useState("");
+
+    function handleSubmit() {
+
+        if (
+
+            !message.trim()
+
+        )
+
+            return;
 
         onSend(message);
 
@@ -28,9 +44,23 @@ export default function ChatInput({
 
     }
 
-    return(
+    return (
 
-        <div className="border-t bg-white p-5 shrink-0">
+        <div
+
+            className="
+
+                shrink-0
+
+                border-t
+
+                bg-white
+
+                p-5
+
+            "
+
+        >
 
             <div className="flex gap-4">
 
@@ -38,21 +68,45 @@ export default function ChatInput({
 
                     value={message}
 
-                    onChange={e=>setMessage(e.target.value)}
+                    onChange={
 
-                    onKeyDown={e=>{
+                        e =>
 
-                        if(e.key==="Enter"){
+                            setMessage(
 
-                            handleSubmit();
+                                e.target.value
 
-                        }
+                            )
 
-                    }}
+                    }
+
+                    onKeyDown={
+
+                        e =>
+
+                            e.key === "Enter" &&
+
+                            handleSubmit()
+
+                    }
+
+                    className="
+
+                        flex-1
+
+                        rounded-lg
+
+                        border
+
+                        px-4
+
+                        py-3
+
+                        outline-none
+
+                    "
 
                     placeholder="Ask anything..."
-
-                    className="flex-1 rounded-lg border px-4 py-3 outline-none"
 
                 />
 
@@ -62,7 +116,17 @@ export default function ChatInput({
 
                     disabled={loading}
 
-                    className="rounded-lg bg-blue-600 px-6 text-white"
+                    className="
+
+                        rounded-lg
+
+                        bg-blue-600
+
+                        px-6
+
+                        text-white
+
+                    "
 
                 >
 

@@ -1,257 +1,154 @@
-import {
-
-    useEffect,
-
-    useState
-
-} from "react";
-
+import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 import {
-
     chat,
-
     createConversation,
-
     getConversation,
-
-    getConversations
-
+    getConversations,
+    deleteConversation,
 } from "../api/career";
 
-import type { Message } from "../types/chat";
+import api from "../api/client";
 
+import type { Message } from "../types/chat";
 import type { Conversation } from "../types/conversation";
 
 export function useCareerCopilot() {
-
-    const [
-
-        conversations,
-
-        setConversations
-
-    ] = useState<Conversation[]>([]);
-
-    const [
-
-        activeConversation,
-
-        setActiveConversation
-
-    ] = useState("");
-
-    const [
-
-        messages,
-
-        setMessages
-
-    ] = useState<Message[]>([]);
-
-    const [
-
-        loading,
-
-        setLoading
-
-    ] = useState(false);
+    const [conversations, setConversations] = useState<Conversation[]>([]);
+    const [activeConversation, setActiveConversation] = useState("");
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [loading, setLoading] = useState(false);
 
     async function refreshConversations() {
-
-        const data = await getConversations();
-
-        setConversations(data);
-
+        try {
+            const data = await getConversations();
+            setConversations(data);
+        } catch (error) {
+            console.error("Failed to load conversations:", error);
+        }
     }
 
-    async function newConversation() {
-
+    async function newConversation(): Promise<string> {
         const conversation = await createConversation();
 
         await refreshConversations();
 
-        setActiveConversation(
-
-            conversation.id
-
-        );
-
+        setActiveConversation(conversation.id);
         setMessages([]);
 
+        return conversation.id;
     }
 
-    async function openConversation(
+    async function openConversation(id: string) {
+        try {
+            const conversation = await getConversation(id);
 
-        id: string
-
-    ) {
-
-        const conversation = await getConversation(id);
-
-        setActiveConversation(id);
-
-        setMessages(
-
-            conversation.messages || []
-
-        );
-
-    }
-
-    async function sendMessage(
-
-        question: string
-
-    ) {
-
-        if (
-
-            !question.trim()
-
-        )
-
-            return;
-
-        if (
-
-            !activeConversation
-
-        ) {
-
-            await newConversation();
-
-            return sendMessage(
-
-                question
-
-            );
-
+            setActiveConversation(id);
+            setMessages(conversation.messages || []);
+        } catch (error) {
+            console.error("Failed to open conversation:", error);
         }
+    }
 
-        const user: Message = {
+    async function renameConversation(
+        id: string,
+        title: string
+    ) {
+        try {
+            await api.patch(`/conversations/${id}/title`, {
+                title,
+            });
 
-            id: uuid(),
+            await refreshConversations();
+        } catch (error) {
+            console.error("Failed to rename conversation:", error);
+        }
+    }
 
-            role: "user",
+    async function removeConversation(id: string) {
+        try {
+            await deleteConversation(id);
 
-            content: question
+            await refreshConversations();
 
-        };
+            if (activeConversation === id) {
+                setActiveConversation("");
+                setMessages([]);
+            }
+        } catch (error) {
+            console.error("Failed to delete conversation:", error);
+        }
+    }
 
-        setMessages(
+    async function sendMessage(question: string) {
+        if (!question.trim()) return;
 
-            prev => [
-
-                ...prev,
-
-                user
-
-            ]
-
-        );
+        if (loading) return;
 
         setLoading(true);
 
         try {
+            let conversationId = activeConversation;
+
+            if (!conversationId) {
+                conversationId = await newConversation();
+            }
+
+            const user: Message = {
+                id: uuid(),
+                role: "user",
+                content: question,
+            };
+
+            setMessages((prev) => [...prev, user]);
 
             const result = await chat(
-
                 question,
-
-                activeConversation
-
+                conversationId
             );
 
             const assistant: Message = {
-
                 id: uuid(),
-
                 role: "assistant",
-
                 content: result.response,
-
                 jobs: result.jobs,
-
-                reportPath: result.report_path
-
+                reportPath: result.report_path,
             };
 
-            setMessages(
-
-                prev => [
-
-                    ...prev,
-
-                    assistant
-
-                ]
-
-            );
+            setMessages((prev) => [...prev, assistant]);
 
             await refreshConversations();
+        } catch (error) {
+            console.error(error);
 
-        }
-
-        catch {
-
-            setMessages(
-
-                prev => [
-
-                    ...prev,
-
-                    {
-
-                        id: uuid(),
-
-                        role: "assistant",
-
-                        content:
-
-                            "❌ Something went wrong."
-
-                    }
-
-                ]
-
-            );
-
-        }
-
-        finally {
-
+            setMessages((prev) => [
+                ...prev,
+                {
+                    id: uuid(),
+                    role: "assistant",
+                    content: "❌ Something went wrong.",
+                },
+            ]);
+        } finally {
             setLoading(false);
-
         }
-
     }
 
     useEffect(() => {
-
         refreshConversations();
-
     }, []);
 
     return {
-
         messages,
-
         loading,
-
         conversations,
-
         activeConversation,
-
         sendMessage,
-
         newConversation,
-
         openConversation,
-
-        refreshConversations
-
+        refreshConversations,
+        renameConversation,
+        removeConversation,
     };
-
 }

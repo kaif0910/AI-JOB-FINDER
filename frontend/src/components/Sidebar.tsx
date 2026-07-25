@@ -1,14 +1,16 @@
 import type { Conversation } from "../types/conversation";
 
-interface Props{
+interface Props {
 
-    conversations:Conversation[];
+    conversations: Conversation[];
 
-    activeConversation:string;
+    activeConversation: string;
 
-    onSelect:(id:string)=>void;
+    onNew: () => void;
 
-    onNew:()=>void;
+    onSelect: (id: string) => void;
+
+    onDelete:(id:string) => void;
 
 }
 
@@ -18,63 +20,122 @@ export default function Sidebar({
 
     activeConversation,
 
+    onNew,
+
     onSelect,
 
-    onNew
+    onDelete
 
-}:Props){
+}: Props) {
 
-    return(
+    return (
 
-        <div className="w-72 h-screen border-r bg-white overflow-y-auto shrink-0">
+        <div
+            className="
+                w-72
+                h-screen
+                shrink-0
+                bg-white
+                border-r
+                flex
+                flex-col
+            "
+        >
 
-            <button
+            <div className="p-4 border-b">
 
-                onClick={() => {
-                    console.log("New Chat Clicked");
-                    onNew();
-                }}
+                <button
 
-                className="w-full rounded-lg bg-blue-600 py-2 text-white"
+                    onClick={onNew}
 
+                    className="
+                        w-full
+                        rounded-lg
+                        bg-blue-600
+                        py-2
+                        text-white
+                        font-medium
+                        hover:bg-blue-700
+                    "
+
+                >
+
+                    + New Chat
+
+                </button>
+
+            </div>
+
+            <div
+                className="
+                    flex-1
+                    overflow-y-auto
+                    p-2
+                    space-y-2
+                "
             >
-
-                + New Chat
-
-            </button>
-
-            <div className="mt-5 space-y-2">
 
                 {
 
-                    conversations.map(conversation=>(
+                    conversations.map(conversation => (
 
                         <div
 
                             key={conversation.id}
 
-                            onClick={()=>onSelect(conversation.id)}
+                            onClick={() =>
 
-                            className={`cursor-pointer rounded-lg p-3
+                                onSelect(conversation.id)
 
-                            ${
+                            }
 
-                                activeConversation===conversation.id
+                            className={`
 
-                                ?
+                                cursor-pointer
 
-                                "bg-blue-100"
+                                rounded-lg
 
-                                :
+                                p-3
 
-                                "hover:bg-gray-200"
+                                transition
 
-                            }`}
+                                ${
+
+                                    activeConversation === conversation.id
+
+                                        ?
+
+                                        "bg-blue-100"
+
+                                        :
+
+                                        "hover:bg-gray-100"
+
+                                }
+
+                            `}
 
                         >
 
-                            {conversation.title}
+                            <p
 
+                                className="font-medium truncate"
+
+                            >
+
+                                {conversation.title}
+
+                            </p>
+
+                            <button
+                                onClick={() => 
+                                    onDelete(conversation.id)
+                                }
+
+                                className="text-red-500"
+                            >
+                                    ✕
+                            </button>
                         </div>
 
                     ))

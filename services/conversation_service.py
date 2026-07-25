@@ -31,7 +31,17 @@ class ConversationService:
             )
 
     def list_conversations(self):
-        return self.load()
+        conversations = self.load()
+
+        return [
+            {
+                "id": conversation["id"],
+                "title": conversation["title"],
+                "updated_at": conversation["updated_at"]
+            }
+
+            for conversation in conversations
+        ]
 
     def create_conversation(self, conversation_id: str):
 

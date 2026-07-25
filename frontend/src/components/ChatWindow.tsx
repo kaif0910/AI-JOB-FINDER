@@ -6,15 +6,15 @@ import {
 
 } from "react";
 
-import type { Message } from "../types/chat";
-
 import ChatMessage from "./ChatMessage";
 
-interface Props{
+import type { Message } from "../types/chat";
 
-    messages:Message[];
+interface Props {
 
-    loading:boolean;
+    messages: Message[];
+
+    loading: boolean;
 
 }
 
@@ -24,25 +24,35 @@ export default function ChatWindow({
 
     loading
 
-}:Props){
+}: Props) {
 
-    const bottomRef=useRef<HTMLDivElement>(null);
+    const bottomRef = useRef<HTMLDivElement>(null);
 
-    useEffect(()=>{
+    useEffect(() => {
 
         bottomRef.current?.scrollIntoView({
 
-            behavior:"smooth"
+            behavior: "smooth"
 
         });
 
-    },[messages,loading]);
+    }, [
 
-    if(messages.length===0){
+        messages,
 
-        return(
+        loading
 
-            <div className="flex-1 min-h-0 overflow-y-auto px-10 py-8">
+    ]);
+
+    if (
+
+        messages.length === 0
+
+    ) {
+
+        return (
+
+            <div className="flex-1 flex items-center justify-center">
 
                 <div className="text-center">
 
@@ -52,10 +62,9 @@ export default function ChatWindow({
 
                     </h1>
 
-                    <p className="mt-4 text-gray-500">
+                    <p className="mt-3 text-gray-500">
 
-                        Ask me anything about your resume,
-                        jobs or career.
+                        Ask anything about your resume or career.
 
                     </p>
 
@@ -67,16 +76,29 @@ export default function ChatWindow({
 
     }
 
-    return(
+    return (
 
         <div
-            className="flex-1 overflow-y-auto
-            px-10 py-8 space-y-6"
+
+            className="
+
+                flex-1
+
+                min-h-0
+
+                overflow-y-auto
+
+                px-10
+
+                py-8
+
+            "
+
         >
 
             {
 
-                messages.map(message=>(
+                messages.map(message => (
 
                     <ChatMessage
 
@@ -100,15 +122,15 @@ export default function ChatWindow({
 
                 loading &&
 
-                <div className="text-gray-500 animate-pulse">
+                <div className="mt-5 text-gray-500">
 
-                    Career Copilot is thinking...
+                    Thinking...
 
                 </div>
 
             }
 
-            <div ref={bottomRef}/>
+            <div ref={bottomRef} />
 
         </div>
 

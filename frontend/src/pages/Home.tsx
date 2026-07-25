@@ -4,23 +4,36 @@ import UploadResume from "../components/UploadResume";
 import ChatWindow from "../components/ChatWindow";
 import ChatInput from "../components/ChatInput";
 
-import { useChat } from "../hooks/useChat";
-import { useConversation } from "../hooks/useConversation";
+// import { useChat } from "../hooks/useChat";
+// import { useConversation } from "../hooks/useConversation";
+
+import { useCareerCopilot } from "../hooks/useCareerCopilot";
 
 export default function Home() {
+
+    // const {
+    //     messages,
+    //     loading,
+    //     sendMessage
+    // } = useChat();
+
+    // const {
+    //     conversations,
+    //     activeConversation,
+    //     setActiveConversation,
+    //     newConversation
+    // } = useConversation();
 
     const {
         messages,
         loading,
-        sendMessage
-    } = useChat();
-
-    const {
         conversations,
         activeConversation,
-        setActiveConversation,
-        newConversation
-    } = useConversation();
+        sendMessage,
+        newConversation,
+        openConversation,
+        removeConversation
+    }=useCareerCopilot();
 
     return (
 
@@ -31,8 +44,9 @@ export default function Home() {
             <Sidebar
                 conversations={conversations}
                 activeConversation={activeConversation}
-                onSelect={setActiveConversation}
+                onSelect={openConversation}
                 onNew={newConversation}
+                onDelete={removeConversation}
             />
 
             {/* Right Side */}
@@ -58,12 +72,7 @@ export default function Home() {
 
                 <ChatInput
                     loading={loading}
-                    onSend={(message) =>
-                        sendMessage(
-                            message,
-                            activeConversation
-                        )
-                    }
+                    onSend={sendMessage}
                 />
 
             </div>

@@ -111,3 +111,26 @@ export async function deleteConversation(
     );
 
 }
+
+
+export async function renameConversation(
+
+    id:string,
+
+    title:string
+
+){
+
+    return api.patch(
+
+        `/conversations/${id}/title`,
+
+        {
+
+            title
+
+        }
+
+    );
+
+}
