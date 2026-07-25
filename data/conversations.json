@@ -3,8 +3,29 @@
         "id": "b0fa9f5b-b557-481c-8b7b-ae5f398c9d94",
         "title": "New Chat",
         "created_at": "2026-07-25T14:06:12.226653",
-        "updated_at": "2026-07-25T14:06:12.226653",
-        "messages": []
+        "updated_at": "2026-07-25T17:55:05.036283",
+        "messages": [
+            {
+                "role": "user",
+                "content": "hi",
+                "created_at": "2026-07-25T17:55:00.318305"
+            },
+            {
+                "role": "assistant",
+                "content": "It seems like you're starting a conversation. Is there something specific you'd like to talk about or ask regarding your career in AI backend development? Perhaps you're looking for advice on how to get started, or you'd like to discuss current trends and opportunities in the field? I'm here to listen and help.",
+                "created_at": "2026-07-25T17:55:00.360902"
+            },
+            {
+                "role": "user",
+                "content": "hi",
+                "created_at": "2026-07-25T17:55:05.007537"
+            },
+            {
+                "role": "assistant",
+                "content": "It looks like we're having a series of greetings. If you're ready to move forward, I'd be happy to start a conversation about your career goals or interests in AI backend development. What's been on your mind lately? Are you exploring new job opportunities, looking to learn new skills, or trying to navigate the industry?",
+                "created_at": "2026-07-25T17:55:05.036274"
+            }
+        ]
     },
     {
         "id": "5184a607-4331-4b7a-8852-69f84a70a7ea",
@@ -17,8 +38,19 @@
         "id": "e1c5eb18-cb63-45a9-9b40-93962ed0553c",
         "title": "New Chat",
         "created_at": "2026-07-25T14:13:42.611473",
-        "updated_at": "2026-07-25T14:13:42.611473",
-        "messages": []
+        "updated_at": "2026-07-25T17:34:42.932697",
+        "messages": [
+            {
+                "role": "user",
+                "content": "hi",
+                "created_at": "2026-07-25T17:34:42.884073"
+            },
+            {
+                "role": "assistant",
+                "content": "Hello. It's nice to meet you. I'm a career mentor specializing in AI backend development. How can I assist you today? Are you looking for guidance on resume building, job searching, or perhaps navigating a career path in the AI backend field?",
+                "created_at": "2026-07-25T17:34:42.932681"
+            }
+        ]
     },
     {
         "id": "16f7d66b-4d40-4fbb-8590-70c12baec2ed",
@@ -130,6 +162,55 @@
         "title": "New Chat",
         "created_at": "2026-07-25T14:32:22.351104",
         "updated_at": "2026-07-25T14:32:22.351104",
+        "messages": []
+    },
+    {
+        "id": "3ad64026-c962-4ce5-8007-535b4ba71522",
+        "title": "New Chat",
+        "created_at": "2026-07-25T17:56:56.837553",
+        "updated_at": "2026-07-25T17:56:56.837553",
+        "messages": []
+    },
+    {
+        "id": "7ca5f98e-3807-4b01-973e-3ca569c371a4",
+        "title": "New Chat",
+        "created_at": "2026-07-25T17:57:35.188005",
+        "updated_at": "2026-07-25T17:57:35.188005",
+        "messages": []
+    },
+    {
+        "id": "a6ca3d10-e312-48ba-a545-4e8930db26e5",
+        "title": "New Chat",
+        "created_at": "2026-07-25T17:57:40.905164",
+        "updated_at": "2026-07-25T17:57:40.905164",
+        "messages": []
+    },
+    {
+        "id": "554f149b-6f8a-4cdd-944a-1a0cb1622f8a",
+        "title": "New Chat",
+        "created_at": "2026-07-25T17:57:48.090704",
+        "updated_at": "2026-07-25T17:57:48.090704",
+        "messages": []
+    },
+    {
+        "id": "dc145672-88be-4a54-855c-d87751f67aa5",
+        "title": "New Chat",
+        "created_at": "2026-07-25T17:57:59.928420",
+        "updated_at": "2026-07-25T17:57:59.928420",
+        "messages": []
+    },
+    {
+        "id": "573596c6-8da3-4f69-bb1a-bc7ad04c362b",
+        "title": "New Chat",
+        "created_at": "2026-07-25T17:58:11.039499",
+        "updated_at": "2026-07-25T17:58:11.039499",
+        "messages": []
+    },
+    {
+        "id": "77b057c5-5c17-4ace-b51a-5a8c3daab6ef",
+        "title": "New Chat",
+        "created_at": "2026-07-25T17:58:19.652241",
+        "updated_at": "2026-07-25T17:58:19.652241",
         "messages": []
     }
 ]

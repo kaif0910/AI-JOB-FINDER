@@ -12,7 +12,7 @@ export function useChat(){
 
     const [loading,setLoading]=useState(false);
 
-    async function sendMessage(question:string){
+    async function sendMessage(question:string, conversationId: string){
 
         if(!question.trim()) return;
 
@@ -38,7 +38,7 @@ export function useChat(){
 
         try{
 
-            const result=await chat(question);
+            const result=await chat(question, conversationId);
 
             const ai:Message={
 
