@@ -96,7 +96,8 @@ class CareerCopilot:
             ),
             "report_path": result.get(
                 "report_path"
-            )
+            ),
+            "conversation_title": conversation["title"]
         }
 
 
