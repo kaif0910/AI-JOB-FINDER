@@ -5,6 +5,7 @@ from typing import List
 class ChatRequest(BaseModel):
     question: str
     session_id: str
+    conversation_id: str
 
 class JobItem(BaseModel):
     title: str
