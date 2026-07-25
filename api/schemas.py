@@ -20,6 +20,8 @@ class ChatResponse(BaseModel):
 
     report_path: str | None = None
 
+    conversation_title: str | None = None
+
 
 class jobRequest(BaseModel):
     role: str
