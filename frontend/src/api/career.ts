@@ -22,7 +22,8 @@ import { getSessionId } from "../utils/session";
 
 
 export async function chat(
-    question:string
+    question:string,
+    conversationId: string
 ){
 
     const response=await api.post(
@@ -31,7 +32,8 @@ export async function chat(
 
         {
             question,
-            session_id: getSessionId()
+            session_id: getSessionId(),
+            conversation_id: conversationId 
         }
 
     );
