@@ -42,15 +42,15 @@ class CareerCopilot:
     def __init__(self):
         self.workflow = workflow
 
-    def chat(self, message: str, session_id: str):
+    def chat(self, message: str, session_id: str, conversation_id: str):
 
         conversation = conversation_service.get_conversation(
-            session_id
+            conversation_id
         )
 
         if conversation is None:
             conversation = conversation_service.create_conversation(
-                session_id
+                conversation_id
             )
 
         
@@ -67,13 +67,13 @@ class CareerCopilot:
             )
 
         conversation_service.append_message(
-            session_id,
+            conversation_id,
             "user",
             message
         )
 
         conversation_service.append_message(
-            session_id,
+            conversation_id,
             "assistant",
             result["response"]
         )
@@ -84,7 +84,7 @@ class CareerCopilot:
             )
 
             conversation_service.update_title(
-                session_id,
+                conversation_id,
                 title
             )
 
