@@ -42,7 +42,7 @@ export default function ChatWindow({
 
         return(
 
-            <div className="flex flex-1 items-center justify-center">
+            <div className="flex-1 min-h-0 overflow-y-auto px-10 py-8">
 
                 <div className="text-center">
 

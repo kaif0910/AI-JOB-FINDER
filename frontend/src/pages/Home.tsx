@@ -24,7 +24,7 @@ export default function Home() {
 
     return (
 
-        <div className="flex h-screen bg-gray-50">
+        <div className="flex h-screen overflow-hidden bg-gray-50">
 
             {/* Sidebar */}
 
@@ -37,11 +37,11 @@ export default function Home() {
 
             {/* Right Side */}
 
-            <div className="flex flex-1 flex-col">
+            <div className="flex flex-1 flex-col h-screen overflow-hidden">
 
                 <Navbar />
 
-                <div className="flex justify-center py-5">
+                <div className="flex justify-center py-5 shrink-0">
 
                     <UploadResume />
 

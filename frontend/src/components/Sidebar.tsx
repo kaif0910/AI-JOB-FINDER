@@ -26,11 +26,14 @@ export default function Sidebar({
 
     return(
 
-        <div className="w-72 h-screen border-r bg-white flex flex-col shrink-0">
+        <div className="w-72 h-screen border-r bg-white overflow-y-auto shrink-0">
 
             <button
 
-                onClick={onNew}
+                onClick={() => {
+                    console.log("New Chat Clicked");
+                    onNew();
+                }}
 
                 className="w-full rounded-lg bg-blue-600 py-2 text-white"
 

@@ -81,11 +81,11 @@ export async function getConversations() {
 }
 
 export async function getConversation(
-    conversation_id: string
+    id: string
 ){
 
     const response = await api.get(
-        `/conversations/${conversation_id}`
+        `/conversations/${id}`
     );
 
     return response.data;
@@ -103,11 +103,11 @@ export async function createConversation(){
 }
 
 export async function deleteConversation(
-    conversation_id:string
+    id:string
 ){
 
     await api.delete(
-        `/conversations/${conversation_id}`
+        `/conversations/${id}`
     );
 
 }

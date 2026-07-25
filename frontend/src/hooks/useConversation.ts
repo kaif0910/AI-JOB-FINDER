@@ -40,9 +40,7 @@ export function useConversation(){
 
     async function newConversation(){
 
-        const conversation=
-
-            await createConversation();
+        const conversation= await createConversation();
 
         await loadConversations();
 
@@ -54,13 +52,10 @@ export function useConversation(){
 
     }
 
-    async function openConversation(conversation_id: string) {
-
-        const conversation= 
-            await getConversation(conversation_id);
-        setActiveConversation(conversation_id);
-        
-        return conversation.messages
+    async function openConversation(id: string){
+        const conversation = await getConversation(id);
+        setMessages(conversation.messages);
+        setActiveConversation(id)
     }
 
     useEffect(()=>{
@@ -79,7 +74,9 @@ export function useConversation(){
 
         newConversation,
 
-        loadConversations
+        loadConversations,
+
+        openConversation
 
     };
 
