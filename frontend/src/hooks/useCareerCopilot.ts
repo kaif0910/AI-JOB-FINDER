@@ -32,8 +32,7 @@ export function useCareerCopilot() {
     async function newConversation(): Promise<string> {
         const conversation = await createConversation();
 
-        await refreshConversations();
-
+        setConversations((prev) => [...prev, conversation]);
         setActiveConversation(conversation.id);
         setMessages([]);
 
@@ -70,9 +69,19 @@ export function useCareerCopilot() {
         try {
             await deleteConversation(id);
 
-            await refreshConversations();
+            // await refreshConversations();
 
-            if (activeConversation === id) {
+            // if (activeConversation === id) {
+            //     setActiveConversation("");
+            //     setMessages([]);
+            // }
+
+            const updated = conversations.filter(
+                conversation => conversation.id !== id
+            );
+            setConversations(updated);
+
+            if( activeConversation === id ) {
                 setActiveConversation("");
                 setMessages([]);
             }
@@ -91,7 +100,7 @@ export function useCareerCopilot() {
         try {
             let conversationId = activeConversation;
 
-            if (!conversationId) {
+            if (conversationId === "") {
                 conversationId = await newConversation();
             }
 
@@ -120,8 +129,7 @@ export function useCareerCopilot() {
 
             await refreshConversations();
         } catch (error) {
-            console.error(error);
-
+            console.error(error)
             setMessages((prev) => [
                 ...prev,
                 {

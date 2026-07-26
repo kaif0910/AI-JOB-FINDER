@@ -1,223 +1,70 @@
 [
     {
-        "id": "b0fa9f5b-b557-481c-8b7b-ae5f398c9d94",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:06:12.226653",
-        "updated_at": "2026-07-25T17:55:05.036283",
+        "id": "230254a9-0168-4e0c-9ebe-5de4d5bb363b",
+        "title": "Latest Backend Fresher Jobs",
+        "created_at": "2026-07-26T00:18:04.567117",
+        "updated_at": "2026-07-26T11:48:51.981374",
         "messages": [
             {
                 "role": "user",
                 "content": "hi",
-                "created_at": "2026-07-25T17:55:00.318305"
+                "created_at": "2026-07-26T00:18:06.631736"
             },
             {
                 "role": "assistant",
-                "content": "It seems like you're starting a conversation. Is there something specific you'd like to talk about or ask regarding your career in AI backend development? Perhaps you're looking for advice on how to get started, or you'd like to discuss current trends and opportunities in the field? I'm here to listen and help.",
-                "created_at": "2026-07-25T17:55:00.360902"
+                "content": "I think we've reached a new level of hello repetition. While I'm happy to chat with you, I want to make sure we're making progress and having a meaningful conversation.\n\nTo help us move forward, I'll ask you a question: What's the one thing you'd like to achieve or discuss related to your career in AI backend development? Is it related to:\n\n* Learning a new skill or technology?\n* Finding a new job or career opportunity?\n* Overcoming a specific challenge or obstacle?\n* Something else entirely?\n\nPlease feel free to share, and we can start a more focused conversation.",
+                "created_at": "2026-07-26T00:18:06.669653"
             },
             {
                 "role": "user",
                 "content": "hi",
-                "created_at": "2026-07-25T17:55:05.007537"
+                "created_at": "2026-07-26T00:23:20.963375"
             },
             {
                 "role": "assistant",
-                "content": "It looks like we're having a series of greetings. If you're ready to move forward, I'd be happy to start a conversation about your career goals or interests in AI backend development. What's been on your mind lately? Are you exploring new job opportunities, looking to learn new skills, or trying to navigate the industry?",
-                "created_at": "2026-07-25T17:55:05.036274"
-            }
-        ]
-    },
-    {
-        "id": "5184a607-4331-4b7a-8852-69f84a70a7ea",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:06:50.463049",
-        "updated_at": "2026-07-25T14:06:50.463049",
-        "messages": []
-    },
-    {
-        "id": "e1c5eb18-cb63-45a9-9b40-93962ed0553c",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:13:42.611473",
-        "updated_at": "2026-07-25T17:34:42.932697",
-        "messages": [
+                "content": "I'm starting to think that \"hi\" is becoming a habit. While it's great to be friendly, I'd love to dive deeper into a conversation that can help you with your career goals in AI backend development.\n\nLet me try a different approach. I'll share a few conversation starters, and you can pick the one that resonates with you the most:\n\n1. **Resume review**: Share your resume, and I'll provide feedback on how to improve it for AI backend roles.\n2. **Job search**: Discuss your job search strategy, and I'll offer tips on how to find the best opportunities.\n3. **Skill development**: Explore ways to improve your skills in areas like machine learning, natural language processing, or computer vision.\n4. **Career goals**: Set and work towards specific career goals, such as becoming a team lead or transitioning into a new role.\n\nWhich one of these topics interests you, or do you have something else in mind?",
+                "created_at": "2026-07-26T00:23:22.215006"
+            },
             {
                 "role": "user",
                 "content": "hi",
-                "created_at": "2026-07-25T17:34:42.884073"
+                "created_at": "2026-07-26T00:27:55.117482"
             },
             {
                 "role": "assistant",
-                "content": "Hello. It's nice to meet you. I'm a career mentor specializing in AI backend development. How can I assist you today? Are you looking for guidance on resume building, job searching, or perhaps navigating a career path in the AI backend field?",
-                "created_at": "2026-07-25T17:34:42.932681"
+                "content": "I think it's time to try something new. Instead of just saying \"hi\", let's play a game to get our conversation started. I'll give you two options:\n\n**Option 1: Word Association**\nI'll start with a word related to AI backend development, and you respond with a word that's associated with it. For example, if I say \"machine learning\", you might say \"neural networks\".\n\n**Option 2: Career Scenario**\nI'll describe a scenario related to AI backend development, and you can tell me how you would handle it. For example, \"You're working on a project and encounter a difficult bug. What do you do?\"\n\nWhich option sounds more interesting to you? Or do you have a different idea for how you'd like to start our conversation?",
+                "created_at": "2026-07-26T00:27:55.195209"
+            },
+            {
+                "role": "user",
+                "content": "backend",
+                "created_at": "2026-07-26T00:29:07.166040"
+            },
+            {
+                "role": "assistant",
+                "content": "Now we're getting somewhere. \"Backend\" is a great topic, and I'm happy to dive into it with you.\n\nAs a career mentor in AI backend development, I can help you with a wide range of topics related to backend development, such as:\n\n* **Programming languages**: Python, Java, C++, etc.\n* **Frameworks**: Django, Flask, Spring, etc.\n* **Databases**: Relational databases, NoSQL databases, graph databases, etc.\n* **API design**: RESTful APIs, GraphQL, API security, etc.\n* **Cloud platforms**: AWS, Azure, Google Cloud, etc.\n\nWhat specific aspect of backend development would you like to explore? Are you looking to:\n\n1. **Learn a new programming language** for backend development?\n2. **Improve your skills** in a specific backend framework or library?\n3. **Design and implement** a backend system for a project or application?\n4. **Troubleshoot** a backend issue or bug?\n\nLet me know, and I'll do my best to assist you.",
+                "created_at": "2026-07-26T00:29:07.529674"
+            },
+            {
+                "role": "user",
+                "content": "hi find me some backend jobs ",
+                "created_at": "2026-07-26T11:44:13.748063"
+            },
+            {
+                "role": "assistant",
+                "content": "I've found some backend job listings for you. Here are a few:\n\n1. **Associate Python Developer** at Megaminds IT Services (Hyderabad)\n2. **Backend Developer** at SK Traders (Chennai)\n3. **Product Development Assistant** at MATA Labs (Hyderabad - Hybrid)\n4. **Python Developer** at UniApply (Work from home)\n5. **Software Engineer** at SharePal (Work from home)\n6. **Associate Backend Developer** at Desnor Destination (Work from home)\n7. **AI Product Engineer (Fresher) - Python & React (Remote)** at AIVOA (Work from home)\n8. **Java Developer** at UniApply (Work from home) and Signzy (Bangalore)\n9. **Backend / Full-Stack Engineer** at MathonGo (Bangalore)\n10. **Junior Backend Developer** at 3infotechsolution (Work from home)\n\nYou can find more details about these jobs and apply on the following websites:\n\n* Internshala: https://internshala.com/fresher-jobs/backend-development-jobs\n* VelvetJobs: https://www.velvetjobs.com/job-descriptions/backend-developer\n* Terminal.io: https://www.terminal.io/job-descriptions/backend-developer-job-description-template\n* Spotterful Blog: https://spotterful.com/en/blog/job-description-template/backend-software-engineer-responsibilities-and-required-skills\n* Roadmap.sh: https://roadmap.sh/backend/job-description\n\nRemember to tailor your resume and cover letter to the specific job you're applying for, and good luck with your job search!",
+                "created_at": "2026-07-26T11:44:13.770059"
+            },
+            {
+                "role": "user",
+                "content": "find me latest fresher backend jobs ",
+                "created_at": "2026-07-26T11:48:51.606008"
+            },
+            {
+                "role": "assistant",
+                "content": "Based on the provided data, here are some latest fresher backend jobs:\n\n1. **Associate Python Developer** at Megaminds IT Services in Hyderabad\n2. **Backend Developer** at SK Traders in Chennai\n3. **Product Development Assistant** at MATA Labs in Hyderabad (Hybrid)\n4. **Python Developer** at UniApply (Work from home)\n5. **Software Engineer** at SharePal (Work from home)\n6. **Associate Backend Developer** at Desnor Destination (Work from home)\n7. **AI Product Engineer (Fresher) - Python & React (Remote)** at AIVOA (Work from home)\n8. **Java Developer** at UniApply (Work from home)\n9. **Java Developer** at Signzy in Bangalore\n10. **SD-1** at Wokelo AI (Work from home)\n11. **Backend / Full-Stack Engineer** at MathonGo in Bangalore\n12. **Junior Backend Developer** at 3infotechsolution (Work from home)\n13. **Associate Python Developer** at 3infotechsolution (Work from home)\n14. **Full Stack Developer** at DigiPlus IT in Mumbai, Vasai-Virar\n15. **Backend Devloper** at Myfastx (Work from home)\n16. **AI-native Software Developer Intern** at IXG Inc in Hyderabad\n17. **Java Backend Developer** at Boolment Software Development Private Limited in Gurgaon\n18. **Associate Software Developer** at Woodpetra in Naigaon, Vasai\n19. **Junior Python Developer** at CloudData Technologies in Chennai\n20. **Artificial Intelligence (AI) Associate** at ThinkQuotient Software Private Limited in Pune (Hybrid)\n\nPlease note that these job listings may have certain requirements, such as specific skills or qualifications, and may not be available at the time of your application. It's always a good idea to check the original job posting and company website for the most up-to-date information.\n\nAdditionally, you can also check the following resources for more fresher backend jobs:\n\n* Internshala: [https://internshala.com/fresher-jobs/backend-development-jobs](https://internshala.com/fresher-jobs/backend-development-jobs)\n* VelvetJobs: [https://www.velvetjobs.com/job-descriptions/backend-developer](https://www.velvetjobs.com/job-descriptions/backend-developer)\n* Terminal.io: [https://www.terminal.io/job-descriptions/backend-developer-job-description-template](https://www.terminal.io/job-descriptions/backend-developer-job-description-template)\n* Spotterful Blog: [https://spotterful.com/en/blog/job-description-template/backend-software-engineer-responsibilities-and-required-skills](https://spotterful.com/en/blog/job-description-template/backend-software-engineer-responsibilities-and-required-skills)\n* Roadmap.sh: [https://roadmap.sh/backend/job-description](https://roadmap.sh/backend/job-description)\n\nI hope this helps you in your job search!",
+                "created_at": "2026-07-26T11:48:51.628211"
             }
         ]
-    },
-    {
-        "id": "16f7d66b-4d40-4fbb-8590-70c12baec2ed",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:15:38.239558",
-        "updated_at": "2026-07-25T14:15:38.239558",
-        "messages": []
-    },
-    {
-        "id": "6c796083-3a2a-4b0d-a0b1-5ac167a2f1ba",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:15:47.216763",
-        "updated_at": "2026-07-25T14:15:47.216763",
-        "messages": []
-    },
-    {
-        "id": "e167fd49-13cb-42af-b597-71198400a947",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:15:49.381978",
-        "updated_at": "2026-07-25T14:15:49.381978",
-        "messages": []
-    },
-    {
-        "id": "1475e488-d55a-46b6-b5a2-edfa9900d119",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:21:15.501333",
-        "updated_at": "2026-07-25T14:21:15.501333",
-        "messages": []
-    },
-    {
-        "id": "d112b14c-cdfe-4596-a765-a6ae61648673",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:22:15.558603",
-        "updated_at": "2026-07-25T14:22:15.558603",
-        "messages": []
-    },
-    {
-        "id": "5e726494-f982-412d-97d7-3aa6560234ee",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:23:55.019864",
-        "updated_at": "2026-07-25T14:23:55.019864",
-        "messages": []
-    },
-    {
-        "id": "f717fa01-bb57-48cd-b34a-02256d6bd7fa",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:29:16.038039",
-        "updated_at": "2026-07-25T14:29:16.038039",
-        "messages": []
-    },
-    {
-        "id": "aac588b2-0861-4448-b5f8-c0b24f778155",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:29:34.731130",
-        "updated_at": "2026-07-25T14:29:34.731130",
-        "messages": []
-    },
-    {
-        "id": "0b6d04da-757a-4f0b-a17e-8bcd29059f70",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:30:02.933945",
-        "updated_at": "2026-07-25T14:30:02.933945",
-        "messages": []
-    },
-    {
-        "id": "81b13285-9811-4af8-8b04-0431a6748e6a",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:30:14.780218",
-        "updated_at": "2026-07-25T14:30:14.780218",
-        "messages": []
-    },
-    {
-        "id": "72e56769-d546-43e9-ae23-b0fe3c34b662",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:30:21.637046",
-        "updated_at": "2026-07-25T14:30:21.637046",
-        "messages": []
-    },
-    {
-        "id": "f87844cb-36e2-4f0c-9b74-0c78d325166e",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:30:38.136334",
-        "updated_at": "2026-07-25T14:30:38.136334",
-        "messages": []
-    },
-    {
-        "id": "0f0ded76-2817-4016-a0bc-d98dc11f5e4d",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:31:15.621976",
-        "updated_at": "2026-07-25T14:31:15.621976",
-        "messages": []
-    },
-    {
-        "id": "a59cbddc-4207-4ab2-975f-b4a71b7ce056",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:31:26.297490",
-        "updated_at": "2026-07-25T14:31:26.297490",
-        "messages": []
-    },
-    {
-        "id": "ec1dd9c0-cc60-4cc2-89d3-ee022c8370f8",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:32:13.328719",
-        "updated_at": "2026-07-25T14:32:13.328719",
-        "messages": []
-    },
-    {
-        "id": "c10e287c-e44c-4503-b627-8fb291834983",
-        "title": "New Chat",
-        "created_at": "2026-07-25T14:32:22.351104",
-        "updated_at": "2026-07-25T14:32:22.351104",
-        "messages": []
-    },
-    {
-        "id": "3ad64026-c962-4ce5-8007-535b4ba71522",
-        "title": "New Chat",
-        "created_at": "2026-07-25T17:56:56.837553",
-        "updated_at": "2026-07-25T17:56:56.837553",
-        "messages": []
-    },
-    {
-        "id": "7ca5f98e-3807-4b01-973e-3ca569c371a4",
-        "title": "New Chat",
-        "created_at": "2026-07-25T17:57:35.188005",
-        "updated_at": "2026-07-25T17:57:35.188005",
-        "messages": []
-    },
-    {
-        "id": "a6ca3d10-e312-48ba-a545-4e8930db26e5",
-        "title": "New Chat",
-        "created_at": "2026-07-25T17:57:40.905164",
-        "updated_at": "2026-07-25T17:57:40.905164",
-        "messages": []
-    },
-    {
-        "id": "554f149b-6f8a-4cdd-944a-1a0cb1622f8a",
-        "title": "New Chat",
-        "created_at": "2026-07-25T17:57:48.090704",
-        "updated_at": "2026-07-25T17:57:48.090704",
-        "messages": []
-    },
-    {
-        "id": "dc145672-88be-4a54-855c-d87751f67aa5",
-        "title": "New Chat",
-        "created_at": "2026-07-25T17:57:59.928420",
-        "updated_at": "2026-07-25T17:57:59.928420",
-        "messages": []
-    },
-    {
-        "id": "573596c6-8da3-4f69-bb1a-bc7ad04c362b",
-        "title": "New Chat",
-        "created_at": "2026-07-25T17:58:11.039499",
-        "updated_at": "2026-07-25T17:58:11.039499",
-        "messages": []
-    },
-    {
-        "id": "77b057c5-5c17-4ace-b51a-5a8c3daab6ef",
-        "title": "New Chat",
-        "created_at": "2026-07-25T17:58:19.652241",
-        "updated_at": "2026-07-25T17:58:19.652241",
-        "messages": []
-    },
-    {
-        "id": "f2a325dd-855a-4ad8-8959-8871134b97ba",
-        "title": "New Chat",
-        "created_at": "2026-07-25T18:25:15.216968",
-        "updated_at": "2026-07-25T18:25:15.216968",
-        "messages": []
     }
 ]

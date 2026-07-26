@@ -128,11 +128,12 @@ export default function Sidebar({
                             </p>
 
                             <button
-                                onClick={() => 
+                                onClick={(e) => {
+                                    e.stopPropagation(); 
                                     onDelete(conversation.id)
-                                }
+                                } }
 
-                                className="text-red-500"
+                                className="text-red-500 hover:text-red-700"
                             >
                                     ✕
                             </button>

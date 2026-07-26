@@ -25,8 +25,12 @@ def get_conversation(
 
 @router.delete("/{conversation_id}")
 def delete_conversation(
-    conversation_id
+    conversation_id: str
 ):
+    conversation_service.delete_conversation(
+        conversation_id
+    )
+
     return {
         "message": "Conversation Deleted"
     }
@@ -34,8 +38,8 @@ def delete_conversation(
 
 @router.patch("/{conversation_id}/title")
 def update_title(
-    conversation_id,
-    title
+    conversation_id: str,
+    title: str
 ):
     conversation_service.update_title(
         conversation_id,

@@ -32,6 +32,10 @@ class ConversationService:
 
     def list_conversations(self):
         conversations = self.load()
+        conversations.sort(
+            key=lambda x: x["updated_at"],
+            reverse=True
+        )
 
         return [
             {
@@ -43,21 +47,21 @@ class ConversationService:
             for conversation in conversations
         ]
 
-    def create_conversation(self, conversation_id: str):
+    def create_conversation(self):
 
         conversations =  self.load()
 
-        Conversation = create_conversation()
+        conversation = create_conversation()
 
         conversations.append(
-            Conversation.model_dump(
+            conversation.model_dump(
                 mode="json"
             )
         )
 
         self.save(conversations)
 
-        return Conversation
+        return conversation
 
     def get_conversation(
             self,
