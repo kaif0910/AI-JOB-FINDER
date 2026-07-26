@@ -21,11 +21,13 @@ async def chat(
 
     result = agent.chat(
         request.question,
-        request.session_id
+        request.session_id,
+        request.conversation_id
     )
 
     return ChatResponse(
         response = result["response"],
         jobs=result["jobs"],
-        report_path=result["report_path"]
+        report_path=result["report_path"],
+        conversation_title= result["conversation_title"]
     )

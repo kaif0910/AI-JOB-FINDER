@@ -1,109 +1,109 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-import { chat } from "../api/career";
+// import { chat } from "../api/career";
 
-import { v4 as uuid } from "uuid";
+// import { v4 as uuid } from "uuid";
 
-import type { Message } from "../types/chat";
+// import type { Message } from "../types/chat";
 
-export function useChat(){
+// export function useChat(){
 
-    const [messages,setMessages]=useState<Message[]>([]);
+//     const [messages,setMessages]=useState<Message[]>([]);
 
-    const [loading,setLoading]=useState(false);
+//     const [loading,setLoading]=useState(false);
 
-    async function sendMessage(question:string){
+//     async function sendMessage(question:string, conversationId: string){
 
-        if(!question.trim()) return;
+//         if(!question.trim()) return;
 
-        const user:Message={
+//         const user:Message={
 
-            id:uuid(),
+//             id:uuid(),
 
-            role:"user",
+//             role:"user",
 
-            content:question
+//             content:question
 
-        };
+//         };
 
-        setMessages(prev=>[
+//         setMessages(prev=>[
 
-            ...prev,
+//             ...prev,
 
-            user
+//             user
 
-        ]);
+//         ]);
 
-        setLoading(true);
+//         setLoading(true);
 
-        try{
+//         try{
 
-            const result=await chat(question);
+//             const result=await chat(question, conversationId);
 
-            const ai:Message={
+//             const ai:Message={
 
-                id:uuid(),
+//                 id:uuid(),
 
-                role:"assistant",
+//                 role:"assistant",
 
-                content:result.response,
+//                 content:result.response,
 
-                jobs:result.jobs,
+//                 jobs:result.jobs,
 
-                reportPath:result.report_path
+//                 reportPath:result.report_path
 
-            };
+//             };
 
-            console.log("Backend Response:",result);
+//             console.log("Backend Response:",result);
 
-            setMessages(prev=>[
+//             setMessages(prev=>[
 
-                ...prev,
+//                 ...prev,
 
-                ai
+//                 ai
 
-            ]);
+//             ]);
 
-        }
+//         }
 
-        catch{
+//         catch{
 
-            const error:Message={
+//             const error:Message={
 
-                id:uuid(),
+//                 id:uuid(),
 
-                role:"assistant",
+//                 role:"assistant",
 
-                content:"❌ Something went wrong."
+//                 content:"❌ Something went wrong."
 
-            };
+//             };
 
-            setMessages(prev=>[
+//             setMessages(prev=>[
 
-                ...prev,
+//                 ...prev,
 
-                error
+//                 error
 
-            ]);
+//             ]);
 
-        }
+//         }
 
-        finally{
+//         finally{
 
-            setLoading(false);
+//             setLoading(false);
 
-        }
+//         }
 
-    }
+//     }
 
-    return{
+//     return{
 
-        messages,
+//         messages,
 
-        loading,
+//         loading,
 
-        sendMessage
+//         sendMessage
 
-    };
+//     };
 
-}
+// }

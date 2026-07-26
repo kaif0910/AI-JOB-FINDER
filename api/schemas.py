@@ -5,6 +5,7 @@ from typing import List
 class ChatRequest(BaseModel):
     question: str
     session_id: str
+    conversation_id: str
 
 class JobItem(BaseModel):
     title: str
@@ -18,6 +19,8 @@ class ChatResponse(BaseModel):
     jobs: list[JobItem] = []
 
     report_path: str | None = None
+
+    conversation_title: str | None = None
 
 
 class jobRequest(BaseModel):

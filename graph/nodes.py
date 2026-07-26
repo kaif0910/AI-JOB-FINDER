@@ -17,9 +17,12 @@ from langchain_core.messages import SystemMessage, AIMessage
 from langchain_groq import ChatGroq
 
 llm = ChatGroq(
-    model="meta-llama/llama-4-scout-17b-16e-instruct",
+    model="llama-3.3-70b-versatile",
     api_key=os.getenv("GROQ_API_KEY")
 )
+
+print(llm.model_name)
+
 
 # intent_llm = llm.with_structured_output(
 #     IntentClassification

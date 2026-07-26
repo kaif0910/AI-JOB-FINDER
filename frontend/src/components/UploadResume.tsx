@@ -29,7 +29,7 @@ export default function UploadResume(){
     return(
 
         <label
-            className="cursor-pointer rounded-lg border border-dashed p-6 text-center"
+            className="cursor-pointer rounded-lg border border-dashed p-6 text-center shrink-0 bg-white hover:bg-gray-50 transition"
         >
 
             <input
@@ -48,7 +48,7 @@ export default function UploadResume(){
 
                 ?"Uploading..."
 
-                :"Upload Resume"
+                :"Uploaded Resume (Click to change)"
 
             }
 

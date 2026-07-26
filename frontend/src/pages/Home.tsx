@@ -1,144 +1,84 @@
-// import { useState } from "react";
-
-// import Navbar from "../components/Navbar";
-// import ChatBox from "../components/ChatBox";
-// import ChatInput from "../components/ChatInput";
-
-// import { chat } from "../api/career";
-
-// import type {
-//     ChatResponse,
-// } from "../types/career";
-
-// export default function Home(){
-
-//     const [question,setQuestion]=useState("");
-
-//     const [loading,setLoading]=useState(false);
-
-//     const [response,setResponse]=
-//         useState<ChatResponse|null>(null);
-
-//     async function handleSubmit(){
-
-//         if(!question.trim()) return;
-
-//         try{
-
-//             setLoading(true);
-
-//             const result=
-//                 await analyzeResume(question);
-
-//             setResponse(result);
-
-//             setQuestion("");
-
-//         }
-
-//         catch(error){
-
-//             console.log(error);
-
-//         }
-
-//         finally{
-
-//             setLoading(false);
-
-//         }
-
-//     }
-
-//     return(
-
-//         <>
-
-//             <Navbar/>
-
-//             <main className="max-w-6xl mx-auto px-6 py-8">
-
-//                 <div className="bg-white rounded-2xl shadow-lg h-[80vh] flex flex-col overflow-hidden">
-
-//                     <ChatBox
-
-//                         response={response}
-
-//                         loading={loading}
-
-//                     />
-
-//                     <ChatInput
-
-//                         question={question}
-
-//                         setQuestion={setQuestion}
-
-//                         onSend={handleSubmit}
-
-//                         loading={loading}
-
-//                     />
-
-//                 </div>
-
-//             </main>
-
-//         </>
-
-//     );
-
-// }
-
 import Navbar from "../components/Navbar";
-
+import Sidebar from "../components/Sidebar";
+import UploadResume from "../components/UploadResume";
+import ChatWindow from "../components/ChatWindow";
 import ChatInput from "../components/ChatInput";
 
-import ChatWindow from "../components/ChatWindow";
+// import { useChat } from "../hooks/useChat";
+// import { useConversation } from "../hooks/useConversation";
 
-import { useChat } from "../hooks/useChat";
+import { useCareerCopilot } from "../hooks/useCareerCopilot";
 
-import  UploadResume   from "../components/UploadResume";
+export default function Home() {
 
-export default function Home(){
+    // const {
+    //     messages,
+    //     loading,
+    //     sendMessage
+    // } = useChat();
 
-    const{
+    // const {
+    //     conversations,
+    //     activeConversation,
+    //     setActiveConversation,
+    //     newConversation
+    // } = useConversation();
 
+    const {
         messages,
-
         loading,
+        conversations,
+        activeConversation,
+        sendMessage,
+        newConversation,
+        openConversation,
+        removeConversation
+    }=useCareerCopilot();
 
-        sendMessage
+    return (
 
-    }=useChat();
+        <div className="flex h-screen overflow-hidden bg-gray-50">
 
-    return(
+            {/* Sidebar */}
 
-        <div className="flex h-screen flex-col">
+            <Sidebar
+                conversations={conversations}
+                activeConversation={activeConversation}
+                onSelect={openConversation}
+                onNew={newConversation}
+                onDelete={removeConversation}
+            />
 
-            <Navbar/>
+            {/* Right Side */}
 
-            <div className="px-6 py-4 flex v-screen justify-center">
+            <div className="flex flex-1 flex-col h-screen overflow-hidden">
 
-                <UploadResume/>
+                <Navbar />
+
+                <div className="flex justify-center py-5 shrink-0">
+
+                    <UploadResume />
+
+                </div>
+
+                <div className="flex-1 min-h-0">
+
+                    <ChatWindow
+                        messages={messages}
+                        loading={loading}
+                    />
+
+                </div>
+
+                <div className="shrink-0">
+                    <ChatInput
+                        loading={loading}
+                        onSend={sendMessage}
+                />
+
+                </div>
 
             </div>
-
-            <ChatWindow
-
-                messages={messages}
-
-                loading={loading}
-
-            />
-
-            <ChatInput
-
-                loading={loading}
-
-                onSend={sendMessage}
-
-            />
 
         </div>
 
