@@ -13,6 +13,12 @@ from api.exceptions import generic_exception_handler
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+from slowapi import _rate_limit_exceeded_handler
+
+from utils.limiter import limiter
+
 
 
 
@@ -33,6 +39,13 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Career Copilot",
     lifespan=lifespan
+)
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+app.add_middleware(
+    SlowAPIMiddleware
 )
 
 
