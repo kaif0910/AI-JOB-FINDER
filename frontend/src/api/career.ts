@@ -1,4 +1,5 @@
 import api from "./client";
+import { getSessionId } from "../utils/session";
 
 // import type {
 //     ChatResponse,
@@ -21,7 +22,8 @@ import api from "./client";
 
 
 export async function chat(
-    question:string
+    question:string,
+    conversationId: string
 ){
 
     const response=await api.post(
@@ -29,7 +31,9 @@ export async function chat(
         "/chat",
 
         {
-            question
+            question,
+            session_id: getSessionId(),
+            conversation_id: conversationId 
         }
 
     );
@@ -60,6 +64,72 @@ export async function uploadResume(
         "/resume/upload",
 
         formData
+
+    );
+
+}
+
+
+export async function getConversations() {
+
+    const response = await api.get(
+        "/conversations"
+    );
+
+    return response.data;
+
+}
+
+export async function getConversation(
+    id: string
+){
+
+    const response = await api.get(
+        `/conversations/${id}`
+    );
+
+    return response.data;
+
+}
+
+export async function createConversation(){
+
+    const response = await api.post(
+        "/conversations"
+    );
+
+    return response.data;
+
+}
+
+export async function deleteConversation(
+    id:string
+){
+
+    await api.delete(
+        `/conversations/${id}`
+    );
+
+}
+
+
+export async function renameConversation(
+
+    id:string,
+
+    title:string
+
+){
+
+    return api.patch(
+
+        `/conversations/${id}/title`,
+
+        {
+
+            title
+
+        }
 
     );
 

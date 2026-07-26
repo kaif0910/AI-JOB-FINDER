@@ -1,6 +1,9 @@
 from langgraph.graph import StateGraph, START, END
+from langgraph.checkpoint.memory import MemorySaver
 
 from graph.state import AgentState
+
+memory = MemorySaver()
 
 from graph.nodes import(
     intent_node,
@@ -124,4 +127,6 @@ graph.add_edge(
     END
 )
 
-workflow = graph.compile()
+workflow = graph.compile(
+    checkpointer=memory
+)

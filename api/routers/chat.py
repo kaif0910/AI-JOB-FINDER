@@ -9,22 +9,30 @@ from fastapi import Depends
 
 from api.schemas import ChatRequest, ChatResponse
 
+from fastapi import Request
+from utils.limiter import limiter
+
 router = APIRouter(
     tags=["Chat"]
 )
 
 @router.post("/chat")
+@limiter.limit("20/minute")
 async def chat(
-    request: ChatRequest,
+    request: Request,
+    body: ChatRequest,
     agent: CareerCopilot = Depends(get_agent)
 ):
 
     result = agent.chat(
-        request.question
+        body.question,
+        body.session_id,
+        body.conversation_id
     )
 
     return ChatResponse(
         response = result["response"],
         jobs=result["jobs"],
-        report_path=result["report_path"]
+        report_path=result["report_path"],
+        conversation_title= result["conversation_title"]
     )

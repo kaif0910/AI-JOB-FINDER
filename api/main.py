@@ -6,12 +6,18 @@ from api.routers.career import router as career_router
 from api.routers.reports import router as report_router
 from api.routers.chat import router as chat_router
 from api.routers.resume import router as resume_router
-
+from api.routers.conversation import router as conversation_router
 from services.rag_service import rag_service
 
 from api.exceptions import generic_exception_handler
 
 from fastapi.middleware.cors import CORSMiddleware
+
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+from slowapi import _rate_limit_exceeded_handler
+
+from utils.limiter import limiter
 
 
 
@@ -35,6 +41,13 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+app.add_middleware(
+    SlowAPIMiddleware
+)
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -56,6 +69,7 @@ app.include_router(career_router)
 app.include_router(report_router)
 app.include_router(chat_router)
 app.include_router(resume_router)
+app.include_router(conversation_router)
 
 
 

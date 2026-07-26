@@ -5,7 +5,7 @@ export default function Navbar(){
         <nav
             className="h-16 border-b bg-white
             flex items-center justify-between
-            px-8"
+            px-8 shrink-0"
         >
 
             <div>
