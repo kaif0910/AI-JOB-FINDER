@@ -127,17 +127,16 @@ class ConversationService:
 
     def append_message(
             self,
-            conversation_id,
-            role,
-            content
+            conversation_id: str,
+            message: ChatMessage
     ):
         conversations = self.load()
         for conversation in conversations:
             if conversation["id"] == conversation_id:
                 conversation["messages"].append({
-                    "role": role,
-                    "content": content,
-                    "created_at": datetime.now().isoformat()
+                    message.model_dump(
+                        mode="json"
+                    )
                 })
 
 
