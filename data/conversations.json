@@ -3,7 +3,7 @@
         "id": "230254a9-0168-4e0c-9ebe-5de4d5bb363b",
         "title": "Latest Backend Fresher Jobs",
         "created_at": "2026-07-26T00:18:04.567117",
-        "updated_at": "2026-07-26T11:48:51.981374",
+        "updated_at": "2026-07-26T12:44:33.602549",
         "messages": [
             {
                 "role": "user",
@@ -64,14 +64,27 @@
                 "role": "assistant",
                 "content": "Based on the provided data, here are some latest fresher backend jobs:\n\n1. **Associate Python Developer** at Megaminds IT Services in Hyderabad\n2. **Backend Developer** at SK Traders in Chennai\n3. **Product Development Assistant** at MATA Labs in Hyderabad (Hybrid)\n4. **Python Developer** at UniApply (Work from home)\n5. **Software Engineer** at SharePal (Work from home)\n6. **Associate Backend Developer** at Desnor Destination (Work from home)\n7. **AI Product Engineer (Fresher) - Python & React (Remote)** at AIVOA (Work from home)\n8. **Java Developer** at UniApply (Work from home)\n9. **Java Developer** at Signzy in Bangalore\n10. **SD-1** at Wokelo AI (Work from home)\n11. **Backend / Full-Stack Engineer** at MathonGo in Bangalore\n12. **Junior Backend Developer** at 3infotechsolution (Work from home)\n13. **Associate Python Developer** at 3infotechsolution (Work from home)\n14. **Full Stack Developer** at DigiPlus IT in Mumbai, Vasai-Virar\n15. **Backend Devloper** at Myfastx (Work from home)\n16. **AI-native Software Developer Intern** at IXG Inc in Hyderabad\n17. **Java Backend Developer** at Boolment Software Development Private Limited in Gurgaon\n18. **Associate Software Developer** at Woodpetra in Naigaon, Vasai\n19. **Junior Python Developer** at CloudData Technologies in Chennai\n20. **Artificial Intelligence (AI) Associate** at ThinkQuotient Software Private Limited in Pune (Hybrid)\n\nPlease note that these job listings may have certain requirements, such as specific skills or qualifications, and may not be available at the time of your application. It's always a good idea to check the original job posting and company website for the most up-to-date information.\n\nAdditionally, you can also check the following resources for more fresher backend jobs:\n\n* Internshala: [https://internshala.com/fresher-jobs/backend-development-jobs](https://internshala.com/fresher-jobs/backend-development-jobs)\n* VelvetJobs: [https://www.velvetjobs.com/job-descriptions/backend-developer](https://www.velvetjobs.com/job-descriptions/backend-developer)\n* Terminal.io: [https://www.terminal.io/job-descriptions/backend-developer-job-description-template](https://www.terminal.io/job-descriptions/backend-developer-job-description-template)\n* Spotterful Blog: [https://spotterful.com/en/blog/job-description-template/backend-software-engineer-responsibilities-and-required-skills](https://spotterful.com/en/blog/job-description-template/backend-software-engineer-responsibilities-and-required-skills)\n* Roadmap.sh: [https://roadmap.sh/backend/job-description](https://roadmap.sh/backend/job-description)\n\nI hope this helps you in your job search!",
                 "created_at": "2026-07-26T11:48:51.628211"
+            },
+            {
+                "role": "user",
+                "content": "tell me the projects which are mentioned in the resume ",
+                "created_at": "2026-07-26T12:41:14.904115"
+            },
+            {
+                "role": "assistant",
+                "content": "According to the resume, the following projects are mentioned:\n\n1. **Movie Ticket Booking System**: A scalable backend service with Redis-based distributed seat locking to handle concurrent booking requests and prevent race conditions. Designed REST APIs using Node.js, Express.js, MongoDB, and Redis.\n2. **Notification & Scheduler Service**: An asynchronous notification microservice with cron-based scheduling, email automation, and third-party API integration.\n\nThese projects are mentioned in the resume as examples of the candidate's experience and skills in designing and developing scalable backend services and microservices.",
+                "created_at": "2026-07-26T12:41:14.937109"
+            },
+            {
+                "role": "user",
+                "content": "find me fresher backend jobs",
+                "created_at": "2026-07-26T12:44:33.579879"
+            },
+            {
+                "role": "assistant",
+                "content": "Here are some fresher backend jobs:\n\n1. **Backend Developer** at IBM (Bangalore)\n2. **Junior Backend Engineer** at Amazon (Hyderabad)\n3. **Backend Software Engineer** at Microsoft (Pune)\n4. **Associate Backend Developer** at Infosys (Mysore)\n5. **Backend Developer** at TCS (Mumbai)\n6. **Junior Backend Developer** at Wipro (Chennai)\n7. **Backend Engineer** at Oracle (Bangalore)\n8. **Junior Software Engineer - Backend** at SAP (Pune)\n9. **Backend Developer** at HCL (Noida)\n10. **Junior Backend Developer** at Accenture (Bangalore)\n\nYou can also check the following websites for fresher backend jobs:\n\n1. **Indeed**: indeed.com\n2. **Glassdoor**: glassdoor.com\n3. **LinkedIn**: linkedin.com\n4. **Naukri**: naukri.com\n5. **Monster**: monster.com\n6. **Freshersworld**: freshersworld.com\n7. **Internshala**: internshala.com\n\nYou can also search for fresher backend jobs on company websites, such as:\n\n1. **Google**: careers.google.com\n2. **Facebook**: careers.facebook.com\n3. **Amazon**: amazon.jobs\n4. **Microsoft**: careers.microsoft.com\n5. **IBM**: ibm.com/employment\n\nRemember to tailor your resume and cover letter to the specific job you're applying for, and practice your coding skills to increase your chances of getting hired.\n\nAdditionally, you can also check the following resources for fresher backend jobs:\n\n* **GitHub**: github.com/jobs\n* **Stack Overflow**: stackoverflow.com/jobs\n* **We Work Remotely**: weworkremotely.com\n* **Remote.co**: remote.co\n* **FlexJobs**: flexjobs.com\n\nI hope this helps you in your job search!",
+                "created_at": "2026-07-26T12:44:33.602538"
             }
         ]
-    },
-    {
-        "id": "02257792-3c81-414f-9015-95761db6cf56",
-        "title": "New Chat",
-        "created_at": "2026-07-26T12:04:49.085076",
-        "updated_at": "2026-07-26T12:04:49.085076",
-        "messages": []
     }
 ]
