@@ -4,3 +4,33 @@ __pycache__
 node_modules
 
 chroma_db/
+reports/
+uploads/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+
+# Uploaded resumes
+uploads/
+
+# Generated reports
+reports/
+
+# Chroma DB
+chroma_db/
+
+# VS Code
+.vscode/
+
+# Node
+frontend/node_modules/
+
+# Build
+frontend/dist/
+
+# Logs
+*.log
