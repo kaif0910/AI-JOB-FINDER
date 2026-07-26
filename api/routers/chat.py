@@ -9,11 +9,15 @@ from fastapi import Depends
 
 from api.schemas import ChatRequest, ChatResponse
 
+from fastapi import Request
+from utils.limiter import limiter
+
 router = APIRouter(
     tags=["Chat"]
 )
 
 @router.post("/chat")
+@limiter.limit("20/minute")
 async def chat(
     request: ChatRequest,
     agent: CareerCopilot = Depends(get_agent)
