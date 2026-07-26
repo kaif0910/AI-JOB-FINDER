@@ -61,7 +61,7 @@ export default function Home() {
 
                 </div>
 
-                <div className="flex-1 overflow-hidden">
+                <div className="flex-1 min-h-0">
 
                     <ChatWindow
                         messages={messages}
@@ -70,10 +70,13 @@ export default function Home() {
 
                 </div>
 
-                <ChatInput
-                    loading={loading}
-                    onSend={sendMessage}
+                <div className="shrink-0">
+                    <ChatInput
+                        loading={loading}
+                        onSend={sendMessage}
                 />
+
+                </div>
 
             </div>
 
