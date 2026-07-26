@@ -25,11 +25,12 @@ from utils.limiter import limiter
 @asynccontextmanager
 async def lifespan(app: FastAPI):
 
-    print("Loading Resume...")
+    # print("Loading Resume...")
 
-    rag_service.load_resume("data/resume.pdf")
+    # rag_service.load_resume("data/resume.pdf")
 
-    print("Resume Loaded.")
+    # print("Resume Loaded.")
+    print("Application starting up...")
 
     yield
 
