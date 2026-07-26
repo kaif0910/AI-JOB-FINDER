@@ -53,9 +53,8 @@ app.add_middleware(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        # "http://localhost:5173",
-        # "ai-job-finder-6eyd6ja56-kaif0910s-projects.vercel.app",
-        "*"
+        "http://localhost:5173",
+        "https://ai-job-finder-eta.vercel.app/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
