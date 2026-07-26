@@ -19,14 +19,15 @@ router = APIRouter(
 @router.post("/chat")
 @limiter.limit("20/minute")
 async def chat(
-    request: ChatRequest,
+    request: Request,
+    body: ChatRequest,
     agent: CareerCopilot = Depends(get_agent)
 ):
 
     result = agent.chat(
-        request.question,
-        request.session_id,
-        request.conversation_id
+        body.question,
+        body.session_id,
+        body.conversation_id
     )
 
     return ChatResponse(

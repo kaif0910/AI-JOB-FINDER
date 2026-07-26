@@ -6,14 +6,17 @@ import shutil
 import os
 
 from services.rag_service import rag_service
-
+from fastapi import Request
+from utils.limiter import limiter
 router = APIRouter(
     prefix="/resume",
     tags=["Resume"]
 )
 
 @router.post("/upload")
+@limiter.limit("5/minute")
 async def upload_resume(
+    request: Request,
     file: UploadFile = File(...)
 ):
     os.makedirs(
