@@ -10,7 +10,8 @@ uploads/
 __pycache__/
 *.pyc
 *.pyo
-
+*.pyd
+*.py[cod]
 # Environment
 .env
 
