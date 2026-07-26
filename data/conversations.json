@@ -537,5 +537,34 @@
                 "reportPath": null
             }
         ]
+    },
+    {
+        "id": "7ee8d40b-2c96-4ff2-938f-514710784ca4",
+        "title": "Hello User Session",
+        "created_at": "2026-07-26T21:06:17.448438",
+        "updated_at": "2026-07-26T21:06:18.897958",
+        "messages": [
+            {
+                "role": "user",
+                "content": "hi",
+                "created_at": "2026-07-26T21:06:18.481335",
+                "jobs": null,
+                "reportPath": null
+            },
+            {
+                "role": "assistant",
+                "content": "Hello. It's nice to meet you. I'm a career mentor specializing in AI backend development. How can I assist you today? Are you looking to start a career in AI backend, or do you need guidance on advancing your current career in this field?",
+                "created_at": "2026-07-26T21:06:18.489823",
+                "jobs": [],
+                "reportPath": null
+            }
+        ]
+    },
+    {
+        "id": "19a3c01b-e339-489f-bc02-55ef06852af1",
+        "title": "New Chat",
+        "created_at": "2026-07-26T21:06:27.818313",
+        "updated_at": "2026-07-26T21:06:27.818313",
+        "messages": []
     }
 ]
