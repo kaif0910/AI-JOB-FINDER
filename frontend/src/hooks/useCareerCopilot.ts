@@ -44,7 +44,14 @@ export function useCareerCopilot() {
             const conversation = await getConversation(id);
 
             setActiveConversation(id);
-            setMessages(conversation.messages || []);
+            // setMessages(conversation.messages || []);
+            setMessages(
+                (conversation.messages ?? []).map((message: any) => ({
+                    ...message,
+                    jobs: message.jobs ?? [],
+                    reportPath: message.reportPath ?? message.report_path
+                }))
+            );
         } catch (error) {
             console.error("Failed to open conversation:", error);
         }

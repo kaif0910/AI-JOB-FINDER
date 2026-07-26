@@ -1,9 +1,12 @@
+from api.models.message import ChatMessage
 from services.rag_service import rag_service
 from graph.workflow import workflow
 from graph.state import create_initial_state
 from services.job_service import job_service
 from services.title_service import title_service
 from services.conversation_service import conversation_service
+from uuid import uuid4
+from datetime import datetime
 
 # class CareerCopilot:
 #     def __init__(self):
@@ -68,15 +71,25 @@ class CareerCopilot:
 
         conversation_service.append_message(
             conversation_id,
-            "user",
-            message
+            ChatMessage(
+                id=str(uuid4()),
+                role="user",
+                content=message,
+                created_at=datetime.now().isoformat()
+            )
         )
 
         conversation_service.append_message(
             conversation_id,
-            "assistant",
-            result["response"]
-        )
+            ChatMessage(
+                id=str(uuid4()),
+                role="assistant",
+                content=result["response"],
+                jobs=result.get("job_requirements", []),
+                reportPath=result.get("report_path"),
+                created_at=datetime.now().isoformat()
+            )
+)
 
         if conversation["title"] == "New Chat":
             title = title_service.generate_title(
@@ -97,7 +110,7 @@ class CareerCopilot:
             "report_path": result.get(
                 "report_path"
             ),
-            "conversation_title": conversation["title"]
+            "conversation_title": conversation["title"] 
         }
 
 

@@ -42,7 +42,7 @@ export default function Sidebar({
             "
         >
 
-            <div className="p-4 border-b">
+            <div className="p-3 border-b">
 
                 <button
 

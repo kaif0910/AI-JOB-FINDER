@@ -133,11 +133,11 @@ class ConversationService:
         conversations = self.load()
         for conversation in conversations:
             if conversation["id"] == conversation_id:
-                conversation["messages"].append({
+                conversation["messages"].append(
                     message.model_dump(
                         mode="json"
                     )
-                })
+                )
 
 
                 conversation["updated_at"] = datetime.now().isoformat()
