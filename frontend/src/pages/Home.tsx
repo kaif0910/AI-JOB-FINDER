@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Menu } from "lucide-react";
 
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
@@ -11,7 +10,7 @@ import { useCareerCopilot } from "../hooks/useCareerCopilot";
 
 export default function Home() {
 
-    const [mobileOpen, setMobileOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const {
         messages,
@@ -25,64 +24,65 @@ export default function Home() {
     } = useCareerCopilot();
 
     return (
-        <div className="flex h-screen bg-gray-50 overflow-hidden">
+
+        <div className="flex h-screen overflow-hidden bg-slate-100">
 
             <Sidebar
                 conversations={conversations}
                 activeConversation={activeConversation}
-                onSelect={openConversation}
-                onNew={newConversation}
+                onSelect={(id) => {
+                    openConversation(id);
+                    setSidebarOpen(false);
+                }}
+                onNew={() => {
+                    newConversation();
+                    setSidebarOpen(false);
+                }}
                 onDelete={removeConversation}
-                mobileOpen={mobileOpen}
-                setMobileOpen={setMobileOpen}
+                mobileOpen={sidebarOpen}
+                setMobileOpen={setSidebarOpen}
             />
 
-            <div className="flex flex-1 flex-col min-w-0">
+            <div className="flex min-w-0 flex-1 flex-col">
 
-                {/* Mobile Header */}
+                <Navbar
+                    onMenuClick={() =>
+                        setSidebarOpen(true)
+                    }
+                >
 
-                <div className="md:hidden flex items-center gap-4 border-b bg-white px-4 py-3">
-
-                    <button
-                        onClick={() =>
-                            setMobileOpen(true)
-                        }
-                    >
-                        <Menu size={26} />
-                    </button>
-
-                    <h1 className="font-bold text-lg">
-                        Career Copilot
-                    </h1>
-
-                </div>
-
-                {/* Desktop Navbar */}
-
-                <div className="hidden md:block">
-                    <Navbar />
-                </div>
-
-                <div className="flex justify-center py-4 shrink-0 px-4">
                     <UploadResume />
-                </div>
 
-                <div className="flex-1 min-h-0">
-                    <ChatWindow
-                        messages={messages}
-                        loading={loading}
-                    />
-                </div>
+                </Navbar>
 
-                <div className="shrink-0 px-2 pb-2">
+                <main
+                    className="
+                        flex
+                        flex-1
+                        flex-col
+                        overflow-hidden
+                    "
+                >
+
+                    <div className="flex-1 overflow-hidden">
+
+                        <ChatWindow
+                            messages={messages}
+                            loading={loading}
+                        />
+
+                    </div>
+
                     <ChatInput
                         loading={loading}
                         onSend={sendMessage}
                     />
-                </div>
+
+                </main>
 
             </div>
 
         </div>
+
     );
 }
