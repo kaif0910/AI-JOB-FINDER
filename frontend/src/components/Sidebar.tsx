@@ -1,11 +1,18 @@
 import type { Conversation } from "../types/conversation";
+import {
+    MessageSquarePlus,
+    Trash2,
+    X,
+} from "lucide-react";
 
 interface Props {
     conversations: Conversation[];
     activeConversation: string;
+
     onNew: () => void;
     onSelect: (id: string) => void;
     onDelete: (id: string) => void;
+
     mobileOpen: boolean;
     setMobileOpen: (open: boolean) => void;
 }
@@ -20,13 +27,13 @@ export default function Sidebar({
     setMobileOpen,
 }: Props) {
 
-    const handleSelect = (id: string) => {
+    function handleSelect(id: string) {
         onSelect(id);
 
         if (window.innerWidth < 768) {
             setMobileOpen(false);
         }
-    };
+    }
 
     return (
         <>
@@ -35,7 +42,14 @@ export default function Sidebar({
             <div
                 onClick={() => setMobileOpen(false)}
                 className={`
-                    fixed inset-0 bg-black/40 z-30 md:hidden transition-opacity
+                    fixed
+                    inset-0
+                    bg-black/40
+                    backdrop-blur-sm
+                    z-30
+                    transition-opacity
+                    md:hidden
+
                     ${
                         mobileOpen
                             ? "opacity-100 visible"
@@ -44,20 +58,33 @@ export default function Sidebar({
                 `}
             />
 
+            {/* Sidebar */}
+
             <aside
                 className={`
-                    fixed md:static
+                    fixed
+                    md:static
+
                     left-0
                     top-0
+
                     z-40
+
                     h-screen
                     w-72
+
                     bg-white
+
                     border-r
+
                     flex
                     flex-col
+
                     transition-transform
                     duration-300
+
+                    shadow-xl
+                    md:shadow-none
 
                     ${
                         mobileOpen
@@ -68,18 +95,96 @@ export default function Sidebar({
                     md:translate-x-0
                 `}
             >
-                <div className="p-3 border-b">
+                {/* Header */}
+
+                <div
+                    className="
+                        flex
+                        items-center
+                        justify-between
+                        p-4
+                        border-b
+                    "
+                >
+                    <h2 className="font-semibold text-gray-800">
+                        Conversations
+                    </h2>
+
+                    <button
+                        onClick={() => setMobileOpen(false)}
+                        className="
+                            md:hidden
+                            rounded-lg
+                            p-2
+                            hover:bg-gray-100
+                        "
+                    >
+                        <X size={20} />
+                    </button>
+                </div>
+
+                {/* New Chat */}
+
+                <div className="p-4">
 
                     <button
                         onClick={onNew}
-                        className="w-full rounded-lg bg-blue-600 py-2 text-white font-medium hover:bg-blue-700"
+                        className="
+                            w-full
+
+                            flex
+                            items-center
+                            justify-center
+                            gap-2
+
+                            rounded-xl
+
+                            bg-blue-600
+
+                            py-3
+
+                            text-white
+
+                            font-medium
+
+                            hover:bg-blue-700
+
+                            transition
+                        "
                     >
-                        + New Chat
+                        <MessageSquarePlus size={18} />
+
+                        New Chat
+
                     </button>
 
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-2 space-y-2">
+                {/* Chats */}
+
+                <div
+                    className="
+                        flex-1
+                        overflow-y-auto
+                        px-3
+                        pb-5
+                        space-y-2
+                    "
+                >
+                    {conversations.length === 0 && (
+
+                        <div
+                            className="
+                                mt-20
+                                text-center
+                                text-sm
+                                text-gray-400
+                            "
+                        >
+                            No conversations yet
+                        </div>
+
+                    )}
 
                     {conversations.map((conversation) => (
 
@@ -89,39 +194,80 @@ export default function Sidebar({
                                 handleSelect(conversation.id)
                             }
                             className={`
+                                group
+
                                 cursor-pointer
-                                rounded-lg
+
+                                rounded-xl
+
+                                border
+
                                 p-3
-                                transition
-                                flex
-                                justify-between
-                                items-center
+
+                                transition-all
 
                                 ${
                                     activeConversation === conversation.id
-                                        ? "bg-blue-100"
-                                        : "hover:bg-gray-100"
+                                        ? "bg-blue-50 border-blue-500"
+                                        : "border-transparent hover:bg-gray-50"
                                 }
                             `}
                         >
-                            <p className="truncate font-medium">
-                                {conversation.title}
-                            </p>
+                            <div className="flex items-center justify-between">
 
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    onDelete(conversation.id);
-                                }}
-                                className="text-red-500 hover:text-red-700"
-                            >
-                                ✕
-                            </button>
+                                <div className="min-w-0">
+
+                                    <p
+                                        className="
+                                            truncate
+                                            font-medium
+                                        "
+                                    >
+                                        {conversation.title}
+                                    </p>
+
+                                </div>
+
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onDelete(conversation.id);
+                                    }}
+                                    className="
+                                        opacity-0
+                                        group-hover:opacity-100
+
+                                        transition
+
+                                        text-gray-400
+                                        hover:text-red-600
+                                    "
+                                >
+                                    <Trash2 size={16} />
+                                </button>
+
+                            </div>
+
                         </div>
 
                     ))}
 
                 </div>
+
+                {/* Footer */}
+
+                <div
+                    className="
+                        border-t
+                        p-4
+                        text-center
+                        text-xs
+                        text-gray-400
+                    "
+                >
+                    Career Copilot v1.0
+                </div>
+
             </aside>
         </>
     );
