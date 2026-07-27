@@ -1,28 +1,16 @@
+import { useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import UploadResume from "../components/UploadResume";
 import ChatWindow from "../components/ChatWindow";
 import ChatInput from "../components/ChatInput";
 
-// import { useChat } from "../hooks/useChat";
-// import { useConversation } from "../hooks/useConversation";
-
 import { useCareerCopilot } from "../hooks/useCareerCopilot";
 
 export default function Home() {
 
-    // const {
-    //     messages,
-    //     loading,
-    //     sendMessage
-    // } = useChat();
-
-    // const {
-    //     conversations,
-    //     activeConversation,
-    //     setActiveConversation,
-    //     newConversation
-    // } = useConversation();
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const {
         messages,
@@ -32,56 +20,69 @@ export default function Home() {
         sendMessage,
         newConversation,
         openConversation,
-        removeConversation
-    }=useCareerCopilot();
+        removeConversation,
+    } = useCareerCopilot();
 
     return (
 
-        <div className="flex h-screen overflow-hidden bg-gray-50">
-
-            {/* Sidebar */}
+        <div className="flex h-screen overflow-hidden bg-slate-100">
 
             <Sidebar
                 conversations={conversations}
                 activeConversation={activeConversation}
-                onSelect={openConversation}
-                onNew={newConversation}
+                onSelect={(id) => {
+                    openConversation(id);
+                    setSidebarOpen(false);
+                }}
+                onNew={() => {
+                    newConversation();
+                    setSidebarOpen(false);
+                }}
                 onDelete={removeConversation}
+                mobileOpen={sidebarOpen}
+                setMobileOpen={setSidebarOpen}
             />
 
-            {/* Right Side */}
+            <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
 
-            <div className="flex flex-1 flex-col h-screen overflow-hidden">
-
-                <Navbar />
-
-                <div className="flex justify-center py-5 shrink-0">
+                <Navbar
+                    onMenuClick={() =>
+                        setSidebarOpen(true)
+                    }
+                >
 
                     <UploadResume />
 
-                </div>
+                </Navbar>
 
-                <div className="flex-1 min-h-0">
+                <main
+                    className="
+                        flex
+                        flex-1
+                        flex-col
+                        overflow-hidden
+                    "
+                >
 
-                    <ChatWindow
-                        messages={messages}
-                        loading={loading}
-                    />
+                    <div className="flex-1 min-h-0 overflow-hidden">
 
-                </div>
+                        <ChatWindow
+                            messages={messages}
+                            loading={loading}
+                        />
 
-                <div className="shrink-0">
+                    </div>
+
                     <ChatInput
                         loading={loading}
                         onSend={sendMessage}
-                />
+                    />
 
-                </div>
+                </main>
 
             </div>
 
         </div>
 
     );
-
 }

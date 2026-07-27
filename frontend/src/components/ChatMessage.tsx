@@ -1,96 +1,187 @@
 import ReactMarkdown from "react-markdown";
+import { Bot, User, Download } from "lucide-react";
+
 import JobCard from "./JobCard";
-import type { Job } from "../types/api"
 
-interface Props{
+import type { Job } from "../types/api";
 
-    role:"user"|"assistant";
-
-    content:string;
-
-    jobs?:Job[];
-
-    reportPath?:string;
-
+interface Props {
+    role: "user" | "assistant";
+    content: string;
+    jobs?: Job[];
+    reportPath?: string;
 }
 
 export default function ChatMessage({
-
     role,
-
     content,
-
     jobs,
+    reportPath,
+}: Props) {
 
-    reportPath
+    const isUser = role === "user";
 
-}:Props){
+    const API =
+        import.meta.env.VITE_API_URL;
 
-    const isUser=role==="user";
-
-    return(
+    return (
 
         <div
-            className={`flex ${
-                isUser
-                ?"justify-end"
-                :"justify-start"
-            }`}
+            className={`
+                flex
+                gap-4
+
+                ${isUser ? "justify-end" : "justify-start"}
+            `}
         >
 
+            {!isUser && (
+
+                <div
+                    className="
+                        h-10
+                        w-10
+
+                        shrink-0
+
+                        rounded-xl
+
+                        bg-blue-600
+
+                        flex
+                        items-center
+                        justify-center
+
+                        text-white
+                    "
+                >
+                    <Bot size={20} />
+                </div>
+
+            )}
+
             <div
-                className={`max-w-3xl rounded-xl px-5 py-4 shadow leading-7
+                className={`
+                    max-w-[85%]
+                    md:max-w-3xl
 
-                ${
-                    isUser
+                    rounded-2xl
 
-                    ?"bg-blue-600 text-white"
+                    px-5
+                    py-4
 
-                    :"bg-white border"
-                }`}
+                    shadow-sm
+
+                    leading-7
+
+                    ${
+                        isUser
+                            ? "bg-blue-600 text-white"
+                            : "bg-white border border-gray-200"
+                    }
+                `}
             >
 
-                <ReactMarkdown>
+                <div
+                    className="
+                        prose
+                        prose-sm
+                        max-w-none
+                    "
+                >
 
-                    {content}
+                    <ReactMarkdown>
 
-                </ReactMarkdown>
+                        {content}
 
-                {
-                    jobs?.map(
-                        (job)=>(
+                    </ReactMarkdown>
+
+                </div>
+
+                {jobs?.length ? (
+
+                    <div className="mt-6 space-y-4">
+
+                        {jobs.map(job => (
+
                             <JobCard
-                                key= {job.url}
+                                key={job.url}
                                 title={job.title}
                                 company={job.company}
                                 location={job.location}
-                                url= {job.url}
-
+                                url={job.url}
                             />
-                        )
-                    )
-                }
 
+                        ))}
 
-                {
-                    reportPath && (
-                        <div className="mt-5">
-                            <a 
-                            href={`http://127.0.0.1:8000/reports/download/${reportPath}`}
+                    </div>
 
+                ) : null}
+
+                {reportPath && (
+
+                    <div className="mt-6">
+
+                        <a
+                            href={`${API}/reports/download/${reportPath}`}
                             target="_blank"
-
                             rel="noopener noreferrer"
+                            className="
+                                inline-flex
+                                items-center
+                                gap-2
 
-                            className="inline-block rounded-lg bg-green-600 px-5 py-3 text-white hover:bg-green-700 transition"
-                            >
-                                📄 Download Career Report 
-                            </a>
-                        </div>
-                    )
-                }
+                                rounded-xl
+
+                                bg-green-600
+
+                                px-5
+                                py-3
+
+                                text-white
+
+                                hover:bg-green-700
+
+                                transition
+                            "
+                        >
+
+                            <Download size={18} />
+
+                            Download Career Report
+
+                        </a>
+
+                    </div>
+
+                )}
 
             </div>
+
+            {isUser && (
+
+                <div
+                    className="
+                        h-10
+                        w-10
+
+                        shrink-0
+
+                        rounded-xl
+
+                        bg-gray-900
+
+                        flex
+                        items-center
+                        justify-center
+
+                        text-white
+                    "
+                >
+                    <User size={20} />
+                </div>
+
+            )}
 
         </div>
 
