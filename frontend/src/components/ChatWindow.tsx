@@ -89,8 +89,9 @@ export default function ChatWindow({
             <div
                 className="
                     mx-auto
-                    max-w-4xl
+                    max-w-5xl
                     space-y-8
+                    pb-10
                 "
             >
 
