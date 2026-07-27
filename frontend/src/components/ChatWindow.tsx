@@ -83,6 +83,7 @@ export default function ChatWindow({
                 px-4
                 md:px-8
                 py-8
+                overscroll-contain
             "
         >
 
