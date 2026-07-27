@@ -1,28 +1,17 @@
+import { useState } from "react";
+import { Menu } from "lucide-react";
+
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import UploadResume from "../components/UploadResume";
 import ChatWindow from "../components/ChatWindow";
 import ChatInput from "../components/ChatInput";
 
-// import { useChat } from "../hooks/useChat";
-// import { useConversation } from "../hooks/useConversation";
-
 import { useCareerCopilot } from "../hooks/useCareerCopilot";
 
 export default function Home() {
 
-    // const {
-    //     messages,
-    //     loading,
-    //     sendMessage
-    // } = useChat();
-
-    // const {
-    //     conversations,
-    //     activeConversation,
-    //     setActiveConversation,
-    //     newConversation
-    // } = useConversation();
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const {
         messages,
@@ -32,14 +21,11 @@ export default function Home() {
         sendMessage,
         newConversation,
         openConversation,
-        removeConversation
-    }=useCareerCopilot();
+        removeConversation,
+    } = useCareerCopilot();
 
     return (
-
-        <div className="flex h-screen overflow-hidden bg-gray-50">
-
-            {/* Sidebar */}
+        <div className="flex h-screen bg-gray-50 overflow-hidden">
 
             <Sidebar
                 conversations={conversations}
@@ -47,41 +33,56 @@ export default function Home() {
                 onSelect={openConversation}
                 onNew={newConversation}
                 onDelete={removeConversation}
+                mobileOpen={mobileOpen}
+                setMobileOpen={setMobileOpen}
             />
 
-            {/* Right Side */}
+            <div className="flex flex-1 flex-col min-w-0">
 
-            <div className="flex flex-1 flex-col h-screen overflow-hidden">
+                {/* Mobile Header */}
 
-                <Navbar />
+                <div className="md:hidden flex items-center gap-4 border-b bg-white px-4 py-3">
 
-                <div className="flex justify-center py-5 shrink-0">
+                    <button
+                        onClick={() =>
+                            setMobileOpen(true)
+                        }
+                    >
+                        <Menu size={26} />
+                    </button>
 
-                    <UploadResume />
+                    <h1 className="font-bold text-lg">
+                        Career Copilot
+                    </h1>
 
                 </div>
 
-                <div className="flex-1 min-h-0">
+                {/* Desktop Navbar */}
 
+                <div className="hidden md:block">
+                    <Navbar />
+                </div>
+
+                <div className="flex justify-center py-4 shrink-0 px-4">
+                    <UploadResume />
+                </div>
+
+                <div className="flex-1 min-h-0">
                     <ChatWindow
                         messages={messages}
                         loading={loading}
                     />
-
                 </div>
 
-                <div className="shrink-0">
+                <div className="shrink-0 px-2 pb-2">
                     <ChatInput
                         loading={loading}
                         onSend={sendMessage}
-                />
-
+                    />
                 </div>
 
             </div>
 
         </div>
-
     );
-
 }
