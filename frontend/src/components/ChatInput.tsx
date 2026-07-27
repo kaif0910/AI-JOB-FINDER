@@ -1,136 +1,169 @@
-import {
-
-    useState
-
-} from "react";
+import { useRef, useState } from "react";
+import { SendHorizonal } from "lucide-react";
 
 interface Props {
-
     loading: boolean;
-
     onSend: (message: string) => void;
-
 }
 
 export default function ChatInput({
-
     loading,
-
-    onSend
-
+    onSend,
 }: Props) {
 
-    const [
+    const [message, setMessage] = useState("");
 
-        message,
+    const textareaRef =
+        useRef<HTMLTextAreaElement>(null);
 
-        setMessage
+    function resize() {
 
-    ] = useState("");
+        if (!textareaRef.current) return;
 
-    function handleSubmit() {
+        textareaRef.current.style.height = "0px";
 
-        if (
+        textareaRef.current.style.height =
+            Math.min(
+                textareaRef.current.scrollHeight,
+                180
+            ) + "px";
+    }
 
-            !message.trim()
+    function handleSend() {
 
-        )
-
-            return;
+        if (!message.trim()) return;
 
         onSend(message);
 
         setMessage("");
+
+        requestAnimationFrame(resize);
 
     }
 
     return (
 
         <div
-
             className="
-
-                shrink-0
+                sticky
+                bottom-0
 
                 border-t
 
-                bg-white
+                bg-white/90
 
-                p-5
+                backdrop-blur-md
 
+                p-4
             "
-
         >
 
-            <div className="flex gap-4">
+            <div
+                className="
+                    mx-auto
+                    flex
+                    max-w-5xl
+                    items-end
+                    gap-3
+                "
+            >
 
-                <input
+                <textarea
+
+                    ref={textareaRef}
+
+                    rows={1}
 
                     value={message}
 
-                    onChange={
+                    onChange={(e) => {
 
-                        e =>
+                        setMessage(e.target.value);
 
-                            setMessage(
+                        resize();
 
-                                e.target.value
+                    }}
 
-                            )
+                    onKeyDown={(e) => {
 
-                    }
-
-                    onKeyDown={
-
-                        e =>
-
+                        if (
                             e.key === "Enter" &&
+                            !e.shiftKey
+                        ) {
 
-                            handleSubmit()
+                            e.preventDefault();
 
-                    }
+                            handleSend();
+
+                        }
+
+                    }}
+
+                    placeholder="Ask anything about your career..."
 
                     className="
+                        max-h-44
+                        min-h-[52px]
 
                         flex-1
 
-                        rounded-lg
+                        resize-none
+
+                        rounded-2xl
 
                         border
 
-                        px-4
+                        border-gray-300
+
+                        px-5
 
                         py-3
 
                         outline-none
 
-                    "
+                        focus:border-blue-500
 
-                    placeholder="Ask anything..."
+                        focus:ring-4
+
+                        focus:ring-blue-100
+                    "
 
                 />
 
                 <button
 
-                    onClick={handleSubmit}
+                    onClick={handleSend}
 
                     disabled={loading}
 
                     className="
+                        flex
 
-                        rounded-lg
+                        h-12
+                        w-12
+
+                        items-center
+
+                        justify-center
+
+                        rounded-2xl
 
                         bg-blue-600
 
-                        px-6
-
                         text-white
 
+                        transition
+
+                        hover:bg-blue-700
+
+                        disabled:cursor-not-allowed
+
+                        disabled:opacity-50
                     "
 
                 >
 
-                    Send
+                    <SendHorizonal size={18} />
 
                 </button>
 
