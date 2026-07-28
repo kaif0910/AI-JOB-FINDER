@@ -25,14 +25,14 @@ class RAGService:
     #         model_name="sentence-transformers/all-MiniLM-L6-v2"
     #     )
     #     print("Embedding Model Loaded.")
-    def load_resume(self, pdf_path: str) -> None:
+    def load_resume(self, session_id: str, pdf_path: str) -> None:
 
         # self.initialize()
         # Load PDF
         loader = PyPDFLoader(pdf_path)
         documents = loader.load()
 
-        self.resume_text = "\n\n".join(
+        self.resume_store[session_id] = "\n\n".join(
             doc.page_content
             for doc in documents
         )
