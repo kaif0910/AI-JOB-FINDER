@@ -42,3 +42,6 @@ async def upload_resume(
     return {
         "message": "Resume Uploaded"
     }
+
+
+# every upload belongs to one browser session, so we can use the session_id to identify the user and their resume.
