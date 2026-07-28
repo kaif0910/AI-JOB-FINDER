@@ -68,7 +68,7 @@ class RAGService:
         #     }
         # )
 
-    def search(self, question: str) -> str:
+    def search(self, session_id: str, question: str) -> str:
 
         # if self.retriever is None:
         #     raise Exception("Resume has not been loaded.")
@@ -82,10 +82,10 @@ class RAGService:
 
         # return context
 
-        if not self.resume_text:
+        if session_id not in self.resume_store:
             raise Exception("Resume has not been loaded.")
 
-        return self.resume_text
+        return self.resume_store[session_id]
 
 
 rag_service = RAGService()   #singleton instance
