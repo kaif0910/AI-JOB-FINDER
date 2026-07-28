@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import UploadFile
 from fastapi import File
-
+from fastapi import Form
 import shutil
 import os
 
@@ -17,6 +17,7 @@ router = APIRouter(
 @limiter.limit("5/minute")
 async def upload_resume(
     request: Request,
+    session_id: str = Form(...),
     file: UploadFile = File(...)
 ):
     os.makedirs(
@@ -36,7 +37,7 @@ async def upload_resume(
             buffer
         )
 
-    rag_service.load_resume(path)
+    rag_service.load_resume(session_id, path)
 
     return {
         "message": "Resume Uploaded"
