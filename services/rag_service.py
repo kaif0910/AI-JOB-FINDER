@@ -15,7 +15,7 @@ class RAGService:
 
         # self.vector_store = None
         # self.retriever = None
-        self.resume_text = ""
+        self.resume_store: dict[str, str] = {}
 
     # def initialize(self):
     #     if self.embedding_model is not None:
