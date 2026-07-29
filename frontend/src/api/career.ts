@@ -113,6 +113,7 @@ export async function createConversation(){
 
     const response = await api.post(
         "/conversations",
+        null,
         {
             params: {
                 session_id: getSessionId()

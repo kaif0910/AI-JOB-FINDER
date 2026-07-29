@@ -23,3 +23,7 @@ def create_conversation(session_id: str):
         updated_at=now,
         messages=[]
     )
+
+
+class RenameConversationTitle(BaseModel):
+    title: str
