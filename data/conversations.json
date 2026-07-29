@@ -1,10 +1,25 @@
 [
     {
-        "id": "0efdb53d-73e0-43ac-87a8-e26fcdccd323",
+        "id": "410a3e8b-b432-4b4b-954e-fe01f5a4ad06",
         "session_id": "bf0833d3-d8a9-4370-b02a-d19d1a6132b3",
-        "title": "New Chat",
-        "created_at": "2026-07-29T16:18:22.604574",
-        "updated_at": "2026-07-29T16:18:22.604574",
-        "messages": []
+        "title": "Hello User Session",
+        "created_at": "2026-07-29T16:25:09.051889",
+        "updated_at": "2026-07-29T16:25:10.333113",
+        "messages": [
+            {
+                "role": "user",
+                "content": "hi",
+                "created_at": "2026-07-29T16:25:09.945272",
+                "jobs": null,
+                "reportPath": null
+            },
+            {
+                "role": "assistant",
+                "content": "Hello. It's nice to meet you. I'm a career mentor specializing in AI backend development. How can I assist you today? Are you looking to start a career in AI backend, or do you need guidance on how to advance in your current role?",
+                "created_at": "2026-07-29T16:25:09.947121",
+                "jobs": [],
+                "reportPath": null
+            }
+        ]
     }
 ]
