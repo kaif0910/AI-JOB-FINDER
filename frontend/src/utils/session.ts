@@ -1,13 +1,13 @@
 export function getSessionId(){
 
-    let id = sessionStorage.getItem(
+    let id = localStorage.getItem(
         "career-session"
     );
 
     if(!id){
         id = crypto.randomUUID();
 
-        sessionStorage.setItem(
+        localStorage.setItem(
             "career-session",
             id
         );
