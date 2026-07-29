@@ -73,6 +73,7 @@ class CareerCopilot:
 
         conversation_service.append_message(
             conversation_id,
+            session_id,
             ChatMessage(
                 id=str(uuid4()),
                 role="user",
@@ -83,6 +84,7 @@ class CareerCopilot:
 
         conversation_service.append_message(
             conversation_id,
+            session_id,
             ChatMessage(
                 id=str(uuid4()),
                 role="assistant",
