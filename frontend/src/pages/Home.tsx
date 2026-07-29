@@ -59,6 +59,7 @@ export default function Home() {
                     className="
                         flex
                         flex-1
+                        min-h-0
                         flex-col
                         overflow-hidden
                     "
