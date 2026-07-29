@@ -30,8 +30,12 @@ class ConversationService:
                 indent=4
             )
 
-    def list_conversations(self):
-        conversations = self.load()
+    def list_conversations(self, session_id: str):
+        conversations = [
+            c
+            for c in self.load()
+            if c["session_id"] == session_id
+        ]
         conversations.sort(
             key=lambda x: x["updated_at"],
             reverse=True
@@ -47,11 +51,11 @@ class ConversationService:
             for conversation in conversations
         ]
 
-    def create_conversation(self):
+    def create_conversation(self, session_id: str):
 
         conversations =  self.load()
 
-        conversation = create_conversation()
+        conversation = create_conversation(session_id=session_id)
 
         conversations.append(
             conversation.model_dump(
@@ -65,24 +69,26 @@ class ConversationService:
 
     def get_conversation(
             self,
-            conversation_id: str
+            conversation_id: str,
+            session_id: str
     ):
         conversations = self.load()
 
         for conversation in conversations:
-            if conversation["id"] == conversation_id:
+            if conversation["id"] == conversation_id and conversation["session_id"] == session_id:
                 return conversation 
         return None
 
     def save_messages(
             self,
             conversation_id: str ,
+            session_id: str,
             messages: list[ChatMessage]
     ):
         conversations = self.load()
 
         for conversation in conversations :
-            if conversation["id"] == conversation_id:
+            if conversation["id"] == conversation_id and conversation["session_id"] == session_id:
 
                 conversation["messages"] = [
                     message.model_dump(
@@ -101,10 +107,10 @@ class ConversationService:
 
 
 
-    def update_title(self, conversation_id: str , title: str):
+    def update_title(self, conversation_id: str , session_id: str, title: str):
         conversations = self.load()
         for conversation in conversations:
-            if conversation["id"] == conversation_id:
+            if conversation["id"] == conversation_id and conversation["session_id"] == session_id:
                 conversation["title"] = title
 
                 conversation["updated_at"] = (
@@ -114,14 +120,14 @@ class ConversationService:
                 break
         self.save(conversations)
 
-    def delete_conversation(self, conversation_id: str):
+    def delete_conversation(self, conversation_id: str, session_id: str):
 
         conversations = self.load()
 
         conversations = [
             conversation
             for conversation in conversations 
-            if conversation["id"] != conversation_id
+            if conversation["id"] != conversation_id and conversation["session_id"] == session_id
         ]
         self.save(conversations)
 

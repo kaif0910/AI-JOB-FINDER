@@ -48,13 +48,15 @@ class CareerCopilot:
     def chat(self, message: str, session_id: str, conversation_id: str):
 
         conversation = conversation_service.get_conversation(
-            conversation_id
+            conversation_id,
+            session_id
         )
 
         if conversation is None:
             conversation = conversation_service.create_conversation(
-                conversation_id
+                session_id
             )
+            conversation_id = conversation.id
 
         
 
@@ -98,6 +100,7 @@ class CareerCopilot:
 
             conversation_service.update_title(
                 conversation_id,
+                session_id,
                 title
             )
 

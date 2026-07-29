@@ -80,7 +80,12 @@ export async function uploadResume(
 export async function getConversations() {
 
     const response = await api.get(
-        "/conversations"
+        "/conversations",
+        {
+            params: {
+                session_id: getSessionId()
+            }
+        }
     );
 
     return response.data;
@@ -92,7 +97,12 @@ export async function getConversation(
 ){
 
     const response = await api.get(
-        `/conversations/${id}`
+        `/conversations/${id}`,
+        {
+            params: {
+                session_id: getSessionId()
+            }
+        }
     );
 
     return response.data;
@@ -102,7 +112,13 @@ export async function getConversation(
 export async function createConversation(){
 
     const response = await api.post(
-        "/conversations"
+        "/conversations",
+        null,
+        {
+            params: {
+                session_id: getSessionId()
+            }
+        }   
     );
 
     return response.data;
@@ -114,7 +130,12 @@ export async function deleteConversation(
 ){
 
     await api.delete(
-        `/conversations/${id}`
+        `/conversations/${id}`,
+        {
+            params: {
+                session_id: getSessionId()
+            }
+        }   
     );
 
 }
@@ -136,6 +157,11 @@ export async function renameConversation(
 
             title
 
+        },
+        {
+            params: {
+                session_id: getSessionId()
+            }
         }
 
     );
