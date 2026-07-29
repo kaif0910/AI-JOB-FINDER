@@ -25,7 +25,7 @@ export default function Home() {
 
     return (
 
-        <div className="flex h-screen overflow-hidden bg-slate-100">
+        <div className="flex h-dvh overflow-hidden bg-slate-100">
 
             <Sidebar
                 conversations={conversations}

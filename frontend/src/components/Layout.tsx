@@ -11,7 +11,8 @@ export default function Layout({
 
         <div
             className="
-                min-h-screen
+                h-dvh
+                overflow-hidden
                 bg-slate-100
                 text-gray-900
             "

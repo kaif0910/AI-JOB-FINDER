@@ -55,6 +55,7 @@ export default function ChatInput({
                 backdrop-blur-md
 
                 p-4
+                pb-[max(env(safe-area-inset-bottom), 1rem)]
             "
         >
 
