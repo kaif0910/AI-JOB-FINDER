@@ -59,6 +59,13 @@ export async function uploadResume(
 
     );
 
+    formData.append(
+
+        "session_id",
+        getSessionId()
+
+    );
+
     return api.post(
 
         "/resume/upload",
