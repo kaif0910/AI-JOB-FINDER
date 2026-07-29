@@ -4,6 +4,7 @@ from fastapi import File
 from fastapi import Form
 import shutil
 import os
+from uuid import uuid4
 
 from services.rag_service import rag_service
 from fastapi import Request
@@ -28,7 +29,7 @@ async def upload_resume(
 
     path = os.path.join(
         "uploads",
-        file.filename
+        f"{session_id}_{uuid4()}_{file.filename}"
     )
 
     with open(path, "wb") as buffer:
