@@ -1,9 +1,10 @@
 from fastapi import APIRouter
 from fastapi import UploadFile
 from fastapi import File
-
+from fastapi import Form
 import shutil
 import os
+from uuid import uuid4
 
 from services.rag_service import rag_service
 from fastapi import Request
@@ -17,6 +18,7 @@ router = APIRouter(
 @limiter.limit("5/minute")
 async def upload_resume(
     request: Request,
+    session_id: str = Form(...),
     file: UploadFile = File(...)
 ):
     os.makedirs(
@@ -27,7 +29,7 @@ async def upload_resume(
 
     path = os.path.join(
         "uploads",
-        file.filename
+        f"{session_id}_{uuid4()}_{file.filename}"
     )
 
     with open(path, "wb") as buffer:
@@ -36,8 +38,12 @@ async def upload_resume(
             buffer
         )
 
-    rag_service.load_resume(path)
+    rag_service.load_resume(session_id, path)
+    os.remove(path)    #delete the resume after loading it into the RAG service, to save space and avoid storing sensitive data on the server.
 
     return {
         "message": "Resume Uploaded"
     }
+
+
+# every upload belongs to one browser session, so we can use the session_id to identify the user and their resume.

@@ -21,9 +21,12 @@ class AgentState(TypedDict):
 
     messages: Annotated[list[BaseMessage], add_messages]
 
+    session_id: str
+
 
 def create_initial_state(
         question: str,
+        session_id: str
 ) -> AgentState:
 
     return {
@@ -34,6 +37,7 @@ def create_initial_state(
         "response": "",
         "job_query": None,
         "report_path": None,
+        "session_id": session_id,
         "messages": [
             HumanMessage(
                 content=question

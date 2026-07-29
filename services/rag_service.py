@@ -15,7 +15,7 @@ class RAGService:
 
         # self.vector_store = None
         # self.retriever = None
-        self.resume_text = ""
+        self.resume_store: dict[str, str] = {}
 
     # def initialize(self):
     #     if self.embedding_model is not None:
@@ -25,14 +25,14 @@ class RAGService:
     #         model_name="sentence-transformers/all-MiniLM-L6-v2"
     #     )
     #     print("Embedding Model Loaded.")
-    def load_resume(self, pdf_path: str) -> None:
+    def load_resume(self, session_id: str, pdf_path: str) -> None:
 
         # self.initialize()
         # Load PDF
         loader = PyPDFLoader(pdf_path)
         documents = loader.load()
 
-        self.resume_text = "\n\n".join(
+        self.resume_store[session_id] = "\n\n".join(
             doc.page_content
             for doc in documents
         )
@@ -68,7 +68,7 @@ class RAGService:
         #     }
         # )
 
-    def search(self, question: str) -> str:
+    def search(self, session_id: str, question: str) -> str:
 
         # if self.retriever is None:
         #     raise Exception("Resume has not been loaded.")
@@ -82,10 +82,10 @@ class RAGService:
 
         # return context
 
-        if not self.resume_text:
+        if session_id not in self.resume_store:
             raise Exception("Resume has not been loaded.")
 
-        return self.resume_text
+        return self.resume_store[session_id]
 
 
 rag_service = RAGService()   #singleton instance
