@@ -78,7 +78,7 @@ export default function ChatWindow({
 
         <div
             className="
-                h-full
+                flex-1
                 overflow-y-auto
                 px-4
                 md:px-8
