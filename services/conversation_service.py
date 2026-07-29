@@ -30,8 +30,12 @@ class ConversationService:
                 indent=4
             )
 
-    def list_conversations(self):
-        conversations = self.load()
+    def list_conversations(self, session_id: str):
+        conversations = [
+            c
+            for c in self.load()
+            if c["session_id"] == session_id
+        ]
         conversations.sort(
             key=lambda x: x["updated_at"],
             reverse=True
