@@ -54,7 +54,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://ai-job-finder-eta.vercel.app/",
+        "https://ai-job-finder-eta.vercel.app",
         "https://ai-job-finder-git-main-kaif0910s-projects.vercel.app",
         "https://ai-job-finder-8dxl1h4kq-kaif0910s-projects.vercel.app"
     ],
