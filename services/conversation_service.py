@@ -134,11 +134,12 @@ class ConversationService:
     def append_message(
             self,
             conversation_id: str,
+            session_id: str,
             message: ChatMessage
     ):
         conversations = self.load()
         for conversation in conversations:
-            if conversation["id"] == conversation_id:
+            if conversation["id"] == conversation_id and conversation["session_id"] == session_id:
                 conversation["messages"].append(
                     message.model_dump(
                         mode="json"
