@@ -32,7 +32,7 @@ export async function chat(
 
         {
             question,
-            session_id: getSessionId(),
+            session_id: getSessionId(),                              //conversation_id and session_id both are sent by the broweser to the backend , and also stored by the browser in the session storage, so that the backend can identify the user and the conversation
             conversation_id: conversationId 
         }
 
