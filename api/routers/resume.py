@@ -39,6 +39,7 @@ async def upload_resume(
         )
 
     rag_service.load_resume(session_id, path)
+    os.remove(path)    #delete the resume after loading it into the RAG service, to save space and avoid storing sensitive data on the server.
 
     return {
         "message": "Resume Uploaded"
