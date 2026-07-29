@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "id": "0efdb53d-73e0-43ac-87a8-e26fcdccd323",
+        "session_id": "bf0833d3-d8a9-4370-b02a-d19d1a6132b3",
+        "title": "New Chat",
+        "created_at": "2026-07-29T16:18:22.604574",
+        "updated_at": "2026-07-29T16:18:22.604574",
+        "messages": []
+    }
+]
