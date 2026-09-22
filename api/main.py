@@ -7,6 +7,7 @@ from api.routers.reports import router as report_router
 from api.routers.chat import router as chat_router
 from api.routers.resume import router as resume_router
 from api.routers.conversation import router as conversation_router
+from api.routers.whatsapp import router as whatsapp_router
 from services.rag_service import rag_service
 
 from api.exceptions import generic_exception_handler
@@ -76,6 +77,7 @@ app.include_router(report_router)
 app.include_router(chat_router)
 app.include_router(resume_router)
 app.include_router(conversation_router)
+app.include_router(whatsapp_router)
 
 
 
