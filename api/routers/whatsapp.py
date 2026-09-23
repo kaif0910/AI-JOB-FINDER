@@ -55,6 +55,7 @@ async def verify_webhook(
 
 @router.post("/webhook/whatsapp")
 async def whatsapp_webhook(request: Request):
+    print("========== WEBHOOK DEBUG ==========")
     body = await request.json()
     print("Whatsapp webhook:", body)
     return {"status": "ok"}
